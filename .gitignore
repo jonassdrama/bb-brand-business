@@ -1,0 +1,6 @@
+# Archivos grandes — excluidos de GitHub
+assets/assets */Videos/
+assets/assets */Credenciales solo.key
+
+# Sistema
+.DS_Store

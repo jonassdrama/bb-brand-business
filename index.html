@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BRAND & BUSINESS™ — Thinking Heads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:#0e0c25}
+
+/* ═══ GATE ═══ */
+#gate{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;
+  background:#1E1A4E;background-image:radial-gradient(ellipse at 50% 42%,rgba(83,74,183,.42) 0%,transparent 62%);
+  font-family:'Titillium Web',sans-serif}
+.gate-inner{display:flex;flex-direction:column;align-items:center;text-align:center}
+.gate-logo{margin-bottom:40px}
+.gate-logo img{height:28px;width:auto;display:block;filter:brightness(0) invert(1);opacity:.5}
+.gate-super{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#7F77DD;margin-bottom:10px}
+.gate-title{font-family:'Titillium Web',sans-serif;font-size:46px;font-weight:700;color:#fff;line-height:1;margin-bottom:6px;letter-spacing:-.01em}
+.gate-title em{color:#AFA9EC;font-style:normal}
+.gate-by{font-size:13px;font-weight:300;font-style:italic;color:rgba(175,169,236,.55);margin-bottom:40px}
+.gate-form{display:flex;flex-direction:column;align-items:center;gap:10px;width:260px}
+.gate-input{width:100%;padding:11px 16px;background:rgba(30,26,78,.7);border:1px solid rgba(175,169,236,.22);border-radius:2px;
+  color:#fff;font-family:'Titillium Web',sans-serif;font-size:13px;letter-spacing:.04em;outline:none;text-align:center;transition:border-color .2s}
+.gate-input::placeholder{color:rgba(175,169,236,.3)}
+.gate-input:focus{border-color:rgba(175,169,236,.5)}
+.gate-btn{width:100%;padding:11px;background:#534AB7;border:none;border-radius:2px;color:#fff;
+  font-family:'Titillium Web',sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.gate-btn:hover{background:#6158CB}
+.gate-err{font-size:11px;color:#F87171;height:16px;margin-top:4px}
+
+/* ═══ STAGE ═══ */
+#stage-wrap{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:#0e0c25}
+#stage{width:1280px;height:720px;position:relative;transform-origin:center center}
+#pbar{position:absolute;top:0;left:0;height:2px;background:#534AB7;transition:width .4s ease;z-index:100}
+
+/* ═══ SLIDE BASE ═══ */
+.slide{position:absolute;inset:0;display:none}
+.slide.active{display:block}
+.slide-inner{position:absolute;inset:0;padding:52px 68px 60px;overflow:hidden;font-family:'Titillium Web',sans-serif}
+
+/* ═══ COMMON ═══ */
+.sn{position:absolute;top:28px;right:36px;font-family:'Titillium Web',sans-serif;font-size:10px;font-weight:300;letter-spacing:.2em}
+.sn-light{color:rgba(255,255,255,.18)}
+.sn-dark{color:rgba(30,26,78,.18)}
+.logo{position:absolute;bottom:22px;right:32px}
+.logo img{height:26px;width:auto;display:block}
+.logo-light img{filter:brightness(0) invert(1);opacity:.72}
+.logo-dark img{opacity:.85}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;margin-bottom:14px}
+
+/* ═══ ANIMATIONS ═══ */
+.au{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+.al{opacity:0;transform:translateX(-22px);transition:opacity .55s ease,transform .65s cubic-bezier(.16,1,.3,1)}
+.ax{transform:scaleX(0);transform-origin:left;transition:transform .65s cubic-bezier(.16,1,.3,1)}
+.as{opacity:0;transform:scale(.6);transition:opacity .45s ease,transform .6s cubic-bezier(.34,1.56,.64,1)}
+.af{opacity:0;transition:opacity .8s ease}
+.rw{overflow:hidden;display:block}
+.ri{display:block;transform:translateY(115%);transition:transform .85s cubic-bezier(.16,1,.3,1)}
+.d1{transition-delay:.10s}.d2{transition-delay:.20s}.d3{transition-delay:.30s}.d4{transition-delay:.40s}
+.d5{transition-delay:.52s}.d6{transition-delay:.64s}.d7{transition-delay:.76s}.d8{transition-delay:.88s}
+.d9{transition-delay:1.02s}.d10{transition-delay:1.16s}.d11{transition-delay:1.30s}.d12{transition-delay:1.44s}
+.slide.active .au{opacity:1;transform:translateY(0)}
+.slide.active .al{opacity:1;transform:translateX(0)}
+.slide.active .ax{transform:scaleX(1)}
+.slide.active .as{opacity:1;transform:scale(1)}
+.slide.active .af{opacity:1}
+.slide.active .ri{transform:translateY(0)}
+
+/* ═══ NAV ═══ */
+.nav-bar{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;z-index:200}
+.nav-btn{width:34px;height:34px;border:1px solid rgba(175,169,236,.22);background:rgba(20,16,60,.75);backdrop-filter:blur(10px);
+  border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;color:rgba(255,255,255,.4);font-size:0}
+.nav-btn:hover{border-color:rgba(175,169,236,.5);background:rgba(83,74,183,.3);color:#fff}
+.nav-btn:disabled{opacity:.2;cursor:default}
+.nav-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nav-dots{display:flex;gap:6px;align-items:center}
+.dot{width:5px;height:5px;border-radius:50%;background:rgba(175,169,236,.28);cursor:pointer;transition:all .3s}
+.dot.active{background:#AFA9EC;width:18px;border-radius:3px}
+
+/* ═══ S1 PORTADA ═══ */
+.s1 .slide-inner{background:#1E1A4E;overflow:hidden}
+.s1-mtn{position:absolute;right:0;top:0;height:100%;width:66%;z-index:0;pointer-events:none}
+.s1-mtn svg{width:100%;height:100%}
+.s1-grad{position:absolute;top:0;left:0;height:100%;width:76%;
+  background:linear-gradient(to right,#1E1A4E 46%,rgba(30,26,78,.94) 60%,rgba(30,26,78,.48) 76%,transparent 100%);
+  pointer-events:none;z-index:1}
+.s1 .sn,.s1 .logo{z-index:3}
+.s1-body{position:relative;z-index:2}
+.s1 .eyebrow{color:#7F77DD}
+.s1-big{font-family:'Titillium Web',sans-serif;font-size:86px;font-weight:700;color:#fff;line-height:.9;margin-bottom:10px;letter-spacing:-.02em}
+.s1-amp{color:#AFA9EC}
+.s1-by{font-size:16px;font-weight:300;font-style:italic;color:rgba(175,169,236,.65);margin-bottom:28px;letter-spacing:.05em}
+.s1-div{width:48px;height:1px;background:#534AB7;margin-bottom:18px}
+.s1-cap{font-size:11px;font-weight:300;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.26);line-height:1.75;max-width:400px}
+.s1-wt{position:absolute;bottom:30px;left:68px;font-size:10px;font-weight:300;color:rgba(255,255,255,.18);letter-spacing:.15em;z-index:2}
+/* ═══ MOUNTAIN WATERMARK (dark slides) ═══ */
+.mtn-wm{position:absolute;right:-40px;bottom:-40px;width:480px;height:480px;z-index:0;pointer-events:none;opacity:.07}
+.mtn-wm svg{width:100%;height:100%}
+
+/* ═══ SNV · NEW VERTICAL — LAUNCH SLIDE ═══ */
+.snv .slide-inner{background:#050415;overflow:hidden;display:flex;align-items:center}
+.snv .sn,.snv .logo{z-index:5}
+.snv-text{position:relative;z-index:3;max-width:490px}
+.snv-eye{font-size:9px;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:rgba(175,169,236,.36);margin-bottom:26px}
+.snv-hl{font-family:'Titillium Web',sans-serif;font-size:76px;font-weight:700;color:#fff;line-height:.96;letter-spacing:-.025em;margin-bottom:18px}
+.snv-rule{width:32px;height:1.5px;background:#534AB7;margin-bottom:18px}
+.snv-sub{font-size:14px;font-weight:300;line-height:1.72;color:rgba(255,255,255,.65);margin-bottom:26px;border-left:2px solid rgba(83,74,183,.5);padding-left:14px;max-width:380px}
+.snv-desc{font-size:10.5px;font-weight:300;line-height:2.0;color:rgba(255,255,255,.28);max-width:400px;margin-bottom:34px}
+.snv-desc-b{display:block;margin-top:10px;font-style:italic;color:rgba(175,169,236,.32)}
+.snv-cap{font-size:7.5px;font-weight:400;letter-spacing:.38em;text-transform:uppercase;color:rgba(175,169,236,.2)}
+.snv-sys{position:absolute;right:0;top:50%;transform:translateY(-50%);z-index:2;pointer-events:none;overflow:visible}
+@keyframes nvLine{to{stroke-dashoffset:0}}
+@keyframes nvFadeIn{to{opacity:1}}
+@keyframes nvPulse{0%,100%{opacity:.2}50%{opacity:.55}}
+@keyframes nvOrbit{from{stroke-dashoffset:1500}to{stroke-dashoffset:0}}
+.nv-orbit{fill:none;stroke:rgba(175,169,236,.1);stroke-width:.75;stroke-dasharray:5 9}
+.nv-orbit-i{animation:nvOrbit 2.8s .5s ease-out both}
+.nv-orbit-o{animation:nvOrbit 4s .7s ease-out both}
+.nv-line{fill:none;stroke:rgba(175,169,236,.2);stroke-width:.75;stroke-dasharray:300;stroke-dashoffset:300;animation:nvLine .85s ease both}
+.nv-glow{fill:rgba(83,74,183,.2);filter:url(#nvb);opacity:0;animation:nvFadeIn .6s ease both}
+.nv-ring{fill:none;stroke:rgba(175,169,236,.32);stroke-width:.75;opacity:0;animation:nvFadeIn .5s ease both}
+.nv-dot{fill:rgba(175,169,236,.9);opacity:0;animation:nvFadeIn .4s ease both}
+.nv-lbl{font-size:7.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;fill:#AFA9EC;opacity:0;animation:nvFadeIn .5s ease both}
+.nv-hub-glow{fill:rgba(83,74,183,.35);filter:url(#nvbh);animation:nvPulse 3.5s ease-in-out infinite}
+.nv-hub-o{fill:none;stroke:rgba(175,169,236,.12);stroke-width:.75;opacity:0;animation:nvFadeIn .7s .1s ease both}
+.nv-hub-i{fill:rgba(8,6,24,.96);stroke:rgba(175,169,236,.52);stroke-width:1;opacity:0;animation:nvFadeIn .7s .25s ease both}
+.nv-hub-t{text-anchor:middle;dominant-baseline:middle;fill:#fff;font-size:8px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:0;animation:nvFadeIn .6s .65s ease both}
+.nv-hub-s{text-anchor:middle;dominant-baseline:middle;fill:rgba(175,169,236,.35);font-size:6px;letter-spacing:.06em;opacity:0;animation:nvFadeIn .5s .85s ease both}
+.nv-star{fill:rgba(175,169,236,.28)}
+
+/* ═══ QTL · QUIÉNES SOMOS — TIMELINE ═══ */
+.qtl .slide-inner{background:#0e0c25;overflow:hidden}
+.qtl .sn,.qtl .logo{z-index:3}
+.qtl .eyebrow{color:#7F77DD}
+.qtl-title{font-family:'Titillium Web',sans-serif;font-size:34px;font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.015em;margin-bottom:7px}
+.qtl-sub{font-size:12px;font-weight:300;color:rgba(175,169,236,.38);line-height:1.65;max-width:620px}
+/* Timeline container */
+.qtl-wrap{position:absolute;left:0;right:0;top:188px;bottom:50px}
+/* Horizontal line */
+.qtl-line{position:absolute;top:50%;left:100px;right:102px;height:1px;background:rgba(175,169,236,.22);transform-origin:left;transform:scaleX(0);
+  transition:transform 1.4s cubic-bezier(.16,1,.3,1);transition-delay:.32s}
+.slide.active .qtl-line{transform:scaleX(1)}
+/* Each node */
+.qtl-node{position:absolute;top:0;bottom:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;width:130px}
+/* UP/DOWN content areas — clip-path reveals from the dot outward */
+.qtl-top{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:3px;padding-bottom:9px;
+  clip-path:inset(100% 0 0 0);transition:clip-path .7s cubic-bezier(.16,1,.3,1)}
+.qtl-bot{flex:1;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:3px;padding-top:9px;
+  clip-path:inset(0 0 100% 0);transition:clip-path .7s cubic-bezier(.16,1,.3,1)}
+/* Vertical connector */
+.qtl-vline{width:1px;height:22px;background:rgba(175,169,236,.15);flex-shrink:0}
+/* Dot */
+.qtl-dot{width:9px;height:9px;border-radius:50%;background:#534AB7;border:1.5px solid #AFA9EC;flex-shrink:0;z-index:2;
+  opacity:0;transform:scale(0);transition:opacity .35s ease,transform .5s cubic-bezier(.34,1.56,.64,1)}
+.slide.active .qtl-dot{opacity:1;transform:scale(1)}
+.slide.active .qtl-top{clip-path:inset(0% 0 0 0)}
+.slide.active .qtl-bot{clip-path:inset(0 0 0% 0)}
+/* Text elements */
+.qtl-year{font-family:'Titillium Web',sans-serif;font-size:16px;font-weight:700;color:#AFA9EC;letter-spacing:.03em;line-height:1}
+.qtl-name{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;text-align:center;line-height:1.35;max-width:118px}
+.qtl-desc{font-size:8.5px;font-weight:300;color:rgba(175,169,236,.42);text-align:center;line-height:1.5;max-width:118px}
+.qtl-ico svg{stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5;fill:none;stroke:#AFA9EC;opacity:.48}
+/* Per-node delays — timed so each node appears as the line reaches it */
+.qtl-node:nth-child(2) .qtl-top,.qtl-node:nth-child(2) .qtl-dot{transition-delay:.44s}
+.qtl-node:nth-child(3) .qtl-bot,.qtl-node:nth-child(3) .qtl-dot{transition-delay:.62s}
+.qtl-node:nth-child(4) .qtl-top,.qtl-node:nth-child(4) .qtl-dot{transition-delay:.78s}
+.qtl-node:nth-child(5) .qtl-bot,.qtl-node:nth-child(5) .qtl-dot{transition-delay:.93s}
+.qtl-node:nth-child(6) .qtl-top,.qtl-node:nth-child(6) .qtl-dot{transition-delay:1.07s}
+.qtl-node:nth-child(7) .qtl-bot,.qtl-node:nth-child(7) .qtl-dot{transition-delay:1.20s}
+.qtl-node:nth-child(8) .qtl-top,.qtl-node:nth-child(8) .qtl-dot{transition-delay:1.32s}
+.qtl-node:nth-child(9) .qtl-bot,.qtl-node:nth-child(9) .qtl-dot{transition-delay:1.44s}
+
+/* ═══ S2 QUIÉNES SOMOS — ORBITAL ═══ */
+.s2 .slide-inner{background:#050415 url("assets/assets%20/constelaciondeservicios.png") no-repeat right center;background-size:auto 60%;overflow:hidden}
+.s2 .sn,.s2 .logo{z-index:5}
+.s2 .eyebrow{color:#7F77DD;position:relative;z-index:4}
+.s2-left{position:relative;z-index:4;max-width:480px}
+.s2-hl{font-family:'Titillium Web',sans-serif;font-size:40px;font-weight:700;color:#fff;line-height:1.12;
+  letter-spacing:-.015em;margin-bottom:14px}
+.s2-hl em{font-style:italic;color:#AFA9EC}
+.s2-body{font-size:12px;font-weight:300;color:rgba(255,255,255,.48);line-height:1.85;max-width:370px;margin-bottom:22px}
+.s2-body strong{color:rgba(255,255,255,.82);font-weight:600}
+.s2-op-lbl{font-size:7.5px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:rgba(175,169,236,.3);margin-bottom:8px}
+.s2-callout{padding:14px 18px;background:rgba(83,74,183,.14);border:0.5px solid rgba(175,169,236,.18);
+  border-left:2px solid #534AB7;max-width:390px}
+.s2-callout-t{font-size:15px;font-weight:700;color:#fff;line-height:1.38;margin-bottom:5px}
+.s2-callout-t em{color:#AFA9EC;font-style:normal}
+.s2-callout-sub{font-size:10px;font-weight:300;font-style:italic;color:rgba(175,169,236,.36)}
+/* Gradient fade left → transparent */
+.s2-fade{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;
+  background:linear-gradient(to right,#050415 0px,#050415 460px,rgba(5,4,21,.5) 510px,rgba(5,4,21,.08) 570px,transparent 630px)}
+
+/* ═══ S3 TRES PILARES ═══ */
+.s3 .slide-inner{background:#fff;border-top:3px solid #534AB7;padding:0;display:flex;flex-direction:column;overflow:hidden}
+.s3-hdr{padding:20px 68px 16px;flex-shrink:0;border-bottom:1px solid rgba(83,74,183,.1)}
+.s3-hdr-ey{font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#7F77DD;margin-bottom:6px}
+.s3-hdr-hl{font-family:'Titillium Web',sans-serif;font-size:26px;font-weight:600;color:#26215C;line-height:1}
+.s3 .logo{display:none}.s3 .sn{color:rgba(30,26,78,.18)}
+.s3-cols{display:grid;grid-template-columns:repeat(3,1fr);flex:1}
+.s3-col{padding:28px 30px;display:flex;flex-direction:column;border-right:1px solid rgba(83,74,183,.07);position:relative;overflow:hidden}
+.s3-col:last-child{border-right:none}
+.s3-bg-n{position:absolute;bottom:-10px;right:-2px;font-size:110px;font-weight:700;line-height:1;pointer-events:none;
+  font-family:'Titillium Web',sans-serif;opacity:.05}
+.s3-p-tag{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:12px}
+.s3-p-ico{margin-bottom:14px}
+.s3-p-ico svg{stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5;fill:none;display:block}
+.s3-p-name{font-family:'Titillium Web',sans-serif;font-size:52px;font-weight:700;line-height:1;letter-spacing:-.02em;margin-bottom:16px}
+.s3-p-text{font-size:12px;font-weight:300;line-height:1.78;flex:1}
+/* VISION */
+.s3-vision{background:#EEEDFE;border-top:4px solid #534AB7}
+.s3-vision .s3-p-tag{color:#534AB7}
+.s3-vision .s3-p-ico svg{stroke:#534AB7}
+.s3-vision .s3-p-name{color:#26215C}
+.s3-vision .s3-p-text{color:#3C3489}
+.s3-vision .s3-bg-n{color:#534AB7}
+/* PEOPLE */
+.s3-people{background:#26215C;border-top:4px solid #AFA9EC}
+.s3-people .s3-p-tag{color:#7F77DD}
+.s3-people .s3-p-ico svg{stroke:#AFA9EC}
+.s3-people .s3-p-name{color:#fff}
+.s3-people .s3-p-text{color:rgba(255,255,255,.62)}
+.s3-people .s3-bg-n{color:#AFA9EC}
+/* FUTURE */
+.s3-future{background:#534AB7;border-top:4px solid #EEEDFE}
+.s3-future .s3-p-tag{color:#AFA9EC}
+.s3-future .s3-p-ico svg{stroke:rgba(255,255,255,.78)}
+.s3-future .s3-p-name{color:#fff}
+.s3-future .s3-p-text{color:rgba(255,255,255,.72)}
+.s3-future .s3-bg-n{color:rgba(255,255,255,.75)}
+
+/* ═══ S4 LO QUE HACEMOS ═══ */
+.s4 .slide-inner{background:#0e0c25}
+.s4 .eyebrow{color:#7F77DD}
+.s4-hl{font-family:'Titillium Web',sans-serif;font-size:36px;font-weight:600;color:#fff;line-height:1.1;margin-bottom:18px}
+.s4-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.s4-card{padding:24px 22px;display:flex;flex-direction:column;gap:8px}
+.s4-card-tag{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:4px}
+.s4-card-ico{margin-bottom:6px}
+.s4-card-ico svg{stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5;fill:none;display:block}
+.s4-card-name{font-family:'Titillium Web',sans-serif;font-size:22px;font-weight:700;line-height:1.1;letter-spacing:-.01em}
+.s4-card-main{font-size:12px;font-weight:600;line-height:1.4;padding-top:4px;border-top:0.5px solid}
+.s4-card-body{font-size:11px;font-weight:300;line-height:1.68}
+.s4-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto;padding-top:6px}
+.s4-pill{font-size:8px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:2px;display:inline-block}
+/* vision */
+.s4c-v{background:rgba(238,237,254,.06);border:0.5px solid rgba(175,169,236,.1)}
+.s4c-v .s4-card-tag{color:#7F77DD}
+.s4c-v .s4-card-ico svg{stroke:#534AB7}
+.s4c-v .s4-card-name{color:#AFA9EC}
+.s4c-v .s4-card-main{color:#fff;border-color:rgba(175,169,236,.12)}
+.s4c-v .s4-card-body{color:rgba(175,169,236,.5)}
+.s4c-v .s4-pill{background:rgba(83,74,183,.28);color:#AFA9EC;border:0.5px solid rgba(83,74,183,.42)}
+/* people */
+.s4c-p{background:rgba(83,74,183,.18);border:0.5px solid rgba(127,119,221,.24)}
+.s4c-p .s4-card-tag{color:#AFA9EC}
+.s4c-p .s4-card-ico svg{stroke:#AFA9EC}
+.s4c-p .s4-card-name{color:#fff}
+.s4c-p .s4-card-main{color:#fff;border-color:rgba(175,169,236,.18)}
+.s4c-p .s4-card-body{color:rgba(255,255,255,.58)}
+.s4c-p .s4-pill{background:rgba(175,169,236,.15);color:#fff;border:0.5px solid rgba(175,169,236,.28)}
+/* future */
+.s4c-f{background:rgba(175,169,236,.07);border:0.5px solid rgba(175,169,236,.14)}
+.s4c-f .s4-card-tag{color:#AFA9EC}
+.s4c-f .s4-card-ico svg{stroke:rgba(175,169,236,.7)}
+.s4c-f .s4-card-name{color:rgba(175,169,236,.85)}
+.s4c-f .s4-card-main{color:#fff;border-color:rgba(175,169,236,.1)}
+.s4c-f .s4-card-body{color:rgba(175,169,236,.48)}
+.s4c-f .s4-pill{background:rgba(175,169,236,.1);color:#AFA9EC;border:0.5px solid rgba(175,169,236,.22)}
+
+/* ═══ S5 THE PEAK ═══ */
+.s5 .slide-inner{background:#1E1A4E;overflow:hidden;padding:0}
+.s5 .sn,.s5 .logo{z-index:4;display:none}
+.s5-mtn{position:absolute;inset:0;z-index:0;pointer-events:none}
+.s5-mtn svg{width:100%;height:100%}
+.s5-grad{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to top,rgba(14,12,37,.96) 0%,rgba(14,12,37,.72) 32%,rgba(14,12,37,.22) 58%,transparent 100%)}
+.s5-content{position:absolute;bottom:62px;left:68px;right:68px;z-index:2}
+.s5-eye{font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#7F77DD;margin-bottom:14px}
+.s5-title{font-family:'Titillium Web',sans-serif;font-size:80px;font-weight:700;color:#fff;line-height:.9;letter-spacing:-.02em;margin-bottom:14px}
+.s5-sub{font-size:14px;font-weight:300;font-style:italic;color:rgba(175,169,236,.65);margin-bottom:8px}
+.s5-desc{font-size:12px;font-weight:300;color:rgba(255,255,255,.42);line-height:1.8;max-width:580px;margin-bottom:20px}
+.s5-phases{display:flex;align-items:center;gap:0}
+.s5-ph{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#AFA9EC;
+  padding:5px 14px;background:rgba(83,74,183,.28);border:0.5px solid rgba(175,169,236,.2)}
+.s5-arr{font-size:11px;color:rgba(175,169,236,.32);padding:0 4px}
+
+/* ═══ PEAK PHASE INDICATOR ═══ */
+.phase-ind{display:flex;align-items:center;gap:7px;margin-bottom:12px}
+.phase-dot{width:6px;height:6px;border-radius:50%;border:1px solid rgba(175,169,236,.28);background:transparent;flex-shrink:0;transition:all .3s}
+.phase-dot.on{background:#AFA9EC;border-color:#AFA9EC}
+.phase-sep{width:18px;height:1px;background:rgba(175,169,236,.2);flex-shrink:0}
+.phase-lbl{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(175,169,236,.35)}
+
+/* ═══ S6 BASE CAMP ═══ */
+.s6 .slide-inner{background:#26215C}
+.s6 .eyebrow{color:#7F77DD}
+.s6-hl{font-family:'Titillium Web',sans-serif;font-size:32px;font-weight:600;color:#fff;line-height:1.1;margin-bottom:8px}
+.s6-hl em{font-style:italic;color:#AFA9EC}
+.s6-intro{font-size:12px;font-weight:300;font-style:italic;color:rgba(175,169,236,.45);line-height:1.72;max-width:640px;margin-bottom:14px}
+.s6-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-bottom:3px}
+.s6-card{padding:20px 22px}
+.s6-card-n{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px}
+.s6-card-name{font-family:'Titillium Web',sans-serif;font-size:22px;font-weight:700;margin-bottom:10px;line-height:1.1}
+.s6-card-body{font-size:12px;font-weight:300;line-height:1.7}
+.s6c-a{background:rgba(238,237,254,.07);border:0.5px solid rgba(175,169,236,.1)}
+.s6c-a .s6-card-n{color:#7F77DD}.s6c-a .s6-card-name{color:#AFA9EC}.s6c-a .s6-card-body{color:rgba(175,169,236,.55)}
+.s6c-b{background:rgba(83,74,183,.25);border:0.5px solid rgba(127,119,221,.3)}
+.s6c-b .s6-card-n{color:#AFA9EC}.s6c-b .s6-card-name{color:#fff}.s6c-b .s6-card-body{color:rgba(255,255,255,.62)}
+.s6c-c{background:rgba(255,255,255,.05);border:0.5px solid rgba(175,169,236,.14)}
+.s6c-c .s6-card-n{color:#AFA9EC}.s6c-c .s6-card-name{color:#fff}.s6c-c .s6-card-body{color:rgba(175,169,236,.52)}
+.s6-q{padding:14px 22px;background:rgba(14,12,37,.45);border:0.5px solid rgba(175,169,236,.12);border-left:2px solid #534AB7}
+.s6-q-t{font-size:13px;font-weight:400;font-style:italic;color:rgba(255,255,255,.7);line-height:1.5}
+.s6-q-t strong{color:#AFA9EC;font-weight:600;font-style:normal}
+
+/* ═══ S7 THE ASCENT ═══ */
+.s7 .slide-inner{background:#1E1A4E}
+.s7 .eyebrow{color:#7F77DD}
+.s7-hl{font-family:'Titillium Web',sans-serif;font-size:32px;font-weight:600;color:#fff;line-height:1.1;margin-bottom:8px}
+.s7-hl em{font-style:italic;color:#AFA9EC}
+.s7-intro{font-size:12px;font-weight:300;font-style:italic;color:rgba(175,169,236,.42);line-height:1.72;max-width:640px;margin-bottom:14px}
+.s7-layers{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-bottom:3px}
+.s7-layer{padding:18px 18px;display:flex;flex-direction:column;gap:6px}
+.s7-layer-n{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px}
+.s7-layer-name{font-family:'Titillium Web',sans-serif;font-size:15px;font-weight:700;letter-spacing:.05em;line-height:1.2}
+.s7-layer-body{font-size:11px;font-weight:300;line-height:1.65;color:rgba(175,169,236,.5)}
+.s7l-a{background:rgba(255,255,255,.04);border:0.5px solid rgba(175,169,236,.08)}
+.s7l-a .s7-layer-n{color:rgba(175,169,236,.45)}.s7l-a .s7-layer-name{color:#AFA9EC}
+.s7l-b{background:rgba(83,74,183,.12);border:0.5px solid rgba(83,74,183,.22)}
+.s7l-b .s7-layer-n{color:#7F77DD}.s7l-b .s7-layer-name{color:#AFA9EC}
+.s7l-c{background:rgba(83,74,183,.22);border:0.5px solid rgba(127,119,221,.28)}
+.s7l-c .s7-layer-n{color:#AFA9EC}.s7l-c .s7-layer-name{color:#fff}.s7l-c .s7-layer-body{color:rgba(255,255,255,.58)}
+.s7l-d{background:rgba(175,169,236,.1);border:0.5px solid rgba(175,169,236,.22)}
+.s7l-d .s7-layer-n{color:#AFA9EC}.s7l-d .s7-layer-name{color:#fff}.s7l-d .s7-layer-body{color:rgba(255,255,255,.62)}
+.s7-footer{padding:12px 18px;background:rgba(83,74,183,.1);border:0.5px solid rgba(83,74,183,.18)}
+.s7-footer-t{font-size:11px;font-weight:300;color:rgba(175,169,236,.5);line-height:1.65}
+.s7-footer-t strong{color:#AFA9EC;font-weight:600}
+
+/* ═══ S8 THE SUMMIT ═══ */
+.s8 .slide-inner{background:#EEEDFE;border-top:3px solid #534AB7}
+.s8 .eyebrow{color:#7F77DD}
+.s8 .sn{color:rgba(30,26,78,.18)}
+.s8-hl{font-family:'Titillium Web',sans-serif;font-size:32px;font-weight:600;color:#26215C;line-height:1.1;margin-bottom:8px}
+.s8-hl em{font-style:italic;color:#534AB7}
+.s8-intro{font-size:12px;font-weight:300;font-style:italic;color:#5F5E5A;line-height:1.72;max-width:640px;margin-bottom:14px}
+.s8-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;margin-bottom:3px}
+.s8-card{padding:22px 26px}
+.s8-card-n{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
+.s8-card-name{font-family:'Titillium Web',sans-serif;font-size:17px;font-weight:700;margin-bottom:10px;line-height:1.2}
+.s8-card-body{font-size:12px;font-weight:300;line-height:1.72}
+.s8c-a{background:#fff;border:0.5px solid rgba(83,74,183,.12)}
+.s8c-a .s8-card-n{color:#534AB7}.s8c-a .s8-card-name{color:#26215C}.s8c-a .s8-card-body{color:#5F5E5A}
+.s8c-b{background:#26215C}
+.s8c-b .s8-card-n{color:#7F77DD}.s8c-b .s8-card-name{color:#fff}.s8c-b .s8-card-body{color:rgba(255,255,255,.62)}
+.s8-closing{padding:16px 26px;background:#1E1A4E}
+.s8-closing-t{font-size:13px;font-weight:300;font-style:italic;color:rgba(255,255,255,.7);line-height:1.6;text-align:center}
+.s8-closing-t strong{color:#AFA9EC;font-weight:600;font-style:normal}
+
+/* ═══ S9 INNOVACIÓN ═══ */
+.s9 .slide-inner{background:#1E1A4E;overflow:hidden}
+.s9 .eyebrow{color:#7F77DD}
+.s9-hl{font-family:'Titillium Web',sans-serif;font-size:34px;font-weight:600;color:#fff;line-height:1.1;margin-bottom:8px}
+.s9-sub{font-size:13px;font-weight:300;font-style:italic;color:rgba(175,169,236,.5);margin-bottom:16px;line-height:1.6}
+.s9-hero{padding:16px 22px;background:rgba(83,74,183,.18);border:0.5px solid rgba(83,74,183,.32);margin-bottom:3px}
+.s9-hero-inner{display:flex;align-items:flex-start;gap:22px}
+.s9-hero-lft{flex:1}
+.s9-hero-title{font-family:'Titillium Web',sans-serif;font-size:28px;font-weight:700;color:#fff;line-height:1;margin-bottom:6px}
+.s9-hero-title em{font-style:italic;color:#AFA9EC;font-size:.58em;vertical-align:super}
+.s9-hero-sub{font-size:11px;font-weight:300;font-style:italic;color:rgba(175,169,236,.6);margin-bottom:8px}
+.s9-hero-body{font-size:12px;font-weight:300;color:rgba(255,255,255,.52);line-height:1.72;max-width:440px}
+.s9-hero-rgt{display:flex;flex-direction:column;gap:3px;min-width:260px}
+.s9-stat{padding:10px 14px;background:rgba(14,12,37,.4);border:0.5px solid rgba(175,169,236,.1)}
+.s9-stat-n{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#7F77DD;margin-bottom:3px}
+.s9-stat-v{font-size:12px;font-weight:300;color:rgba(255,255,255,.65);line-height:1.4}
+.s9-pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:3px}
+.s9-pillar{padding:12px 14px;background:rgba(255,255,255,.04);border:0.5px solid rgba(175,169,236,.08)}
+.s9-pillar-n{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#7F77DD;margin-bottom:4px}
+.s9-pillar-name{font-size:11px;font-weight:600;color:#AFA9EC;margin-bottom:4px}
+.s9-pillar-body{font-size:10px;font-weight:300;color:rgba(175,169,236,.45);line-height:1.5}
+.s9-cta{margin-top:10px;display:flex;justify-content:flex-start}
+.s9-cta a{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:#534AB7;border:0.5px solid rgba(175,169,236,.3);
+  color:#fff;font-family:'Titillium Web',sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  text-decoration:none;transition:background .2s,border-color .2s}
+.s9-cta a:hover{background:#6158CB;border-color:rgba(175,169,236,.5)}
+.s9-cta a svg{flex-shrink:0;opacity:.7}
+
+/* ═══ S10 CREDENCIALES ═══ */
+.s10 .slide-inner{background:#fff;border-top:3px solid #534AB7;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.s10 .sn{color:rgba(30,26,78,.18)}
+.s10-eye{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:#7F77DD;margin-bottom:24px}
+.s10-hl{font-family:'Titillium Web',sans-serif;font-size:50px;font-weight:700;color:#26215C;line-height:1;margin-bottom:18px;letter-spacing:-.01em}
+.s10-div{width:48px;height:1px;background:#534AB7;margin:0 auto 20px}
+.s10-sub{font-size:13px;font-weight:300;color:#5F5E5A;line-height:1.75;max-width:420px;margin-bottom:10px}
+.s10-note{font-size:10px;font-weight:400;font-style:italic;color:rgba(83,74,183,.45);letter-spacing:.04em}
+
+/* ═══ CREDENCIALES — REDESIGN ═══ */
+/* shared */
+.cr-eye{font-size:9px;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:rgba(175,169,236,.36);margin-bottom:18px}
+.cr-hl{font-family:'Titillium Web',sans-serif;font-size:54px;font-weight:700;color:#fff;line-height:.95;letter-spacing:-.025em}
+.cr-rule{width:32px;height:1.5px;background:#534AB7;margin:18px 0}
+.cr-body{font-size:13.5px;font-weight:300;line-height:1.78;color:rgba(255,255,255,.52);max-width:420px;margin-bottom:20px}
+.cr-quote{font-size:17px;font-weight:300;font-style:italic;color:#AFA9EC;border-left:2px solid rgba(83,74,183,.5);padding-left:14px;margin-bottom:24px;line-height:1.45}
+.cr-pills{display:flex;flex-wrap:wrap;gap:7px}
+.cr-pill{font-size:8.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(175,169,236,.65);border:1px solid rgba(175,169,236,.18);border-radius:100px;padding:4px 12px}
+/* ÁREAS */
+.cr-areas .slide-inner{background:#050415 radial-gradient(circle at 90% 10%,rgba(83,74,183,.13) 0%,transparent 55%);padding:52px 68px 44px;display:flex;flex-direction:column}
+.cr-areas-top{flex:0 0 auto;margin-bottom:26px}
+.cr-areas-grid{flex:1;display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.cr-card{background:rgba(83,74,183,.07);border:1px solid rgba(175,169,236,.1);border-top:2px solid #534AB7;border-radius:10px;padding:22px 18px 20px;display:flex;flex-direction:column;opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .65s cubic-bezier(.16,1,.3,1)}
+.slide.active .cr-card{opacity:1;transform:translateY(0)}
+.slide.active .cr-card:nth-child(1){transition-delay:.3s}
+.slide.active .cr-card:nth-child(2){transition-delay:.45s}
+.slide.active .cr-card:nth-child(3){transition-delay:.6s}
+.slide.active .cr-card:nth-child(4){transition-delay:.75s}
+.slide.active .cr-card:nth-child(5){transition-delay:.9s}
+.cr-card-num{font-size:10px;font-weight:700;color:#7F77DD;letter-spacing:.22em;margin-bottom:14px;font-family:'Titillium Web',sans-serif}
+.cr-card-ttl{font-size:14px;font-weight:700;color:#fff;line-height:1.25;margin-bottom:10px;font-family:'Titillium Web',sans-serif}
+.cr-card-dsc{font-size:11px;font-weight:300;line-height:1.65;color:rgba(255,255,255,.4)}
+/* HERO */
+.cr-hero .slide-inner{background:#050415 radial-gradient(circle at 10% 80%,rgba(83,74,183,.1) 0%,transparent 50%);padding:52px 68px;display:flex;flex-direction:column;justify-content:space-between}
+.cr-hero-list{flex:1;display:flex;flex-direction:column;justify-content:space-between;margin-top:20px}
+.cr-hero-item{display:flex;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(175,169,236,.07);gap:26px;opacity:0;transform:translateX(-14px);transition:opacity .5s ease,transform .6s cubic-bezier(.16,1,.3,1)}
+.cr-hero-item:last-child{border-bottom:none}
+.slide.active .cr-hero-item{opacity:1;transform:translateX(0)}
+.slide.active .cr-hero-item:nth-child(1){transition-delay:.35s}
+.slide.active .cr-hero-item:nth-child(2){transition-delay:.5s}
+.slide.active .cr-hero-item:nth-child(3){transition-delay:.65s}
+.slide.active .cr-hero-item:nth-child(4){transition-delay:.8s}
+.slide.active .cr-hero-item:nth-child(5){transition-delay:.95s}
+.cr-hero-n{font-size:10px;font-weight:400;color:rgba(175,169,236,.28);letter-spacing:.12em;min-width:26px}
+.cr-hero-name{font-family:'Titillium Web',sans-serif;font-size:40px;font-weight:700;color:#fff;letter-spacing:-.025em;min-width:270px;line-height:1}
+.cr-hero-svc{font-size:12px;font-weight:300;color:rgba(255,255,255,.4);flex:1}
+.cr-hero-claim{font-size:10px;font-style:italic;color:rgba(175,169,236,.45);white-space:nowrap}
+/* CASE STUDY */
+.cr-case .slide-inner{background:#050415;padding:0;display:grid;grid-template-columns:55% 45%}
+.cr-case-left{padding:60px 64px;display:flex;flex-direction:column;justify-content:center}
+.cr-case-right{background:linear-gradient(135deg,rgba(83,74,183,.1) 0%,rgba(5,4,21,.6) 100%);display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(175,169,236,.08);position:relative;overflow:hidden}
+.cr-case-right::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 60% 40%,rgba(83,74,183,.18) 0%,transparent 60%);pointer-events:none}
+.cr-case-wm{font-family:'Titillium Web',sans-serif;font-size:96px;font-weight:700;color:rgba(175,169,236,.04);letter-spacing:-.04em;text-transform:uppercase;position:absolute;bottom:20px;right:-6px;line-height:1;user-select:none;white-space:nowrap}
+.cr-case-ph{position:relative;z-index:1;width:200px;height:72px;border:1px solid rgba(175,169,236,.14);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Titillium Web',sans-serif;font-size:10px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(175,169,236,.28)}
+.cr-case-logo{max-width:220px;max-height:90px;object-fit:contain;filter:brightness(0) invert(1);opacity:.88;position:relative;z-index:1}
+/* VENTURE CAPITAL */
+.cr-vc .slide-inner{background:#050415 radial-gradient(circle at 65% 50%,rgba(83,74,183,.12) 0%,transparent 55%);padding:60px 68px;display:flex;flex-direction:column;justify-content:center}
+.cr-vc-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.44);max-width:460px;line-height:1.75;margin-bottom:44px}
+.cr-vc-grid{display:flex;flex-wrap:wrap;gap:18px 44px;align-items:center}
+.cr-vc-fund{font-family:'Titillium Web',sans-serif;font-size:22px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:.02em;transition:color .3s}
+.cr-vc-fund.feat{font-size:28px;color:rgba(255,255,255,.32)}
+/* DIGITAL & SOCIAL */
+.cr-dig .slide-inner{background:#050415;padding:0;overflow:hidden;position:relative}
+.cr-dig-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 25% 65%,rgba(83,74,183,.15) 0%,transparent 55%),radial-gradient(ellipse at 80% 15%,rgba(26,22,78,.5) 0%,transparent 45%);pointer-events:none}
+.cr-dig-wrap{position:relative;z-index:1;padding:52px 68px;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+.cr-dig-brands{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:1fr 1fr;align-items:center;row-gap:0;margin-top:18px}
+.cr-dig-brand{font-family:'Titillium Web',sans-serif;font-weight:700;line-height:1;text-transform:uppercase;letter-spacing:-.01em}
+.cr-dig-brand.xl{font-size:64px;color:rgba(255,255,255,.16)}
+.cr-dig-brand.lg{font-size:40px;color:rgba(255,255,255,.13)}
+.cr-dig-brand.md{font-size:26px;color:rgba(255,255,255,.1)}
+.cr-dig-brand.ac{color:rgba(175,169,236,.18)}
+/* CIERRE */
+.cr-close .slide-inner{background:#050415;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.cr-close-glow{position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(83,74,183,.14) 0%,transparent 65%);left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cr-close-hl{font-family:'Titillium Web',sans-serif;font-size:50px;font-weight:700;color:#fff;line-height:1.05;letter-spacing:-.025em;max-width:700px;margin-bottom:28px;position:relative;z-index:1}
+.cr-close-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.46);max-width:500px;line-height:1.78;margin-bottom:52px;position:relative;z-index:1}
+.cr-close-ft{font-size:8.5px;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:rgba(175,169,236,.22);position:relative;z-index:1}
+/* HERO list extended — nth-child 6-8 */
+.slide.active .cr-hero-item:nth-child(6){transition-delay:1.1s}
+.slide.active .cr-hero-item:nth-child(7){transition-delay:1.25s}
+.slide.active .cr-hero-item:nth-child(8){transition-delay:1.4s}
+/* VIDEO PLAYER */
+.cr-case-media{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;position:relative;z-index:1;width:100%;padding:28px 32px}
+.cr-vids-wrap{display:flex;gap:14px;width:100%;justify-content:center}
+.cr-vids-wrap.dual .cr-vid-item{flex:1;min-width:0}
+.cr-vid-item{display:flex;flex-direction:column;gap:5px}
+.cr-video-lbl{font-size:8px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:rgba(175,169,236,.32);text-align:center}
+.cr-video{width:100%;border-radius:6px;border:1px solid rgba(175,169,236,.12);background:#000;display:block;max-height:160px;object-fit:contain}
+.cr-vids-wrap.single .cr-video{max-width:280px}
+/* VC LOGOS */
+.cr-vc-item{display:flex;align-items:center}
+.cr-vc-logo{max-height:34px;max-width:120px;object-fit:contain;filter:brightness(0) invert(1);opacity:.32;transition:opacity .3s}
+.cr-vc-logo:hover{opacity:.62}
+/* DIGITAL LOGOS */
+.cr-dig-logo-wrap{display:flex;align-items:center}
+.cr-dig-logo-wrap.rgt{justify-content:flex-end}
+.cr-dig-logo{max-height:82px;max-width:200px;object-fit:contain;filter:brightness(0) invert(1);opacity:.26}
+
+/* ═══ S5 PHASE PILL ANIMATION ═══ */
+.s5-ph{opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .65s cubic-bezier(.16,1,.3,1)}
+.s5-arr{opacity:0;transition:opacity .4s ease}
+.slide.active .s5-ph{opacity:1;transform:translateY(0)}
+.slide.active .s5-arr{opacity:1}
+.slide.active .s5-ph:nth-child(1){transition-delay:.58s}
+.slide.active .s5-arr:nth-child(2){transition-delay:.7s}
+.slide.active .s5-ph:nth-child(3){transition-delay:.8s}
+.slide.active .s5-arr:nth-child(4){transition-delay:.92s}
+.slide.active .s5-ph:nth-child(5){transition-delay:1.02s}
+
+/* S3 column stagger */
+.s3-col{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.slide.active .s3-col{opacity:1;transform:translateY(0)}
+.slide.active .s3-col:nth-child(1){transition-delay:.16s}
+.slide.active .s3-col:nth-child(2){transition-delay:.28s}
+.slide.active .s3-col:nth-child(3){transition-delay:.40s}
+
+/* S4 card stagger */
+.s4-card{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.slide.active .s4-card{opacity:1;transform:translateY(0)}
+.slide.active .s4-card:nth-child(1){transition-delay:.16s}
+.slide.active .s4-card:nth-child(2){transition-delay:.28s}
+.slide.active .s4-card:nth-child(3){transition-delay:.40s}
+
+/* S6 card stagger */
+.s6-card{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.slide.active .s6-card{opacity:1;transform:translateY(0)}
+.slide.active .s6-card:nth-child(1){transition-delay:.18s}
+.slide.active .s6-card:nth-child(2){transition-delay:.30s}
+.slide.active .s6-card:nth-child(3){transition-delay:.42s}
+
+/* S7 layer stagger */
+.s7-layer{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.slide.active .s7-layer{opacity:1;transform:translateY(0)}
+.slide.active .s7-layer:nth-child(1){transition-delay:.14s}
+.slide.active .s7-layer:nth-child(2){transition-delay:.26s}
+.slide.active .s7-layer:nth-child(3){transition-delay:.38s}
+.slide.active .s7-layer:nth-child(4){transition-delay:.50s}
+
+/* S8 card stagger */
+.s8-card{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.slide.active .s8-card{opacity:1;transform:translateY(0)}
+.slide.active .s8-card:nth-child(1){transition-delay:.18s}
+.slide.active .s8-card:nth-child(2){transition-delay:.30s}
+
+/* S9 stagger */
+.s9-pillar{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.slide.active .s9-pillar{opacity:1;transform:translateY(0)}
+.slide.active .s9-pillar:nth-child(1){transition-delay:.30s}
+.slide.active .s9-pillar:nth-child(2){transition-delay:.42s}
+.slide.active .s9-pillar:nth-child(3){transition-delay:.54s}
+.slide.active .s9-pillar:nth-child(4){transition-delay:.66s}
+
+/* ═══ MOBILE ═══ */
+#mobile-view{display:none;position:fixed;inset:0;z-index:400;overflow:hidden;font-family:'Titillium Web',sans-serif;background:#0e0c25}
+#mv-track{position:absolute;top:0;left:0;height:100%;display:flex;transition:transform .42s cubic-bezier(.16,1,.3,1);will-change:transform}
+.mv-card{width:100vw;flex-shrink:0;height:100%;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:44px 32px 96px}
+.mv-bg-svg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.mv-grad{position:absolute;inset:0;z-index:1;pointer-events:none}
+.mv-glow{position:absolute;top:0;left:0;right:0;height:52%;background:radial-gradient(ellipse at 50% 0%,rgba(83,74,183,.32) 0%,transparent 72%);z-index:1;pointer-events:none}
+.mv-lglow{position:absolute;top:0;left:0;right:0;height:48%;background:linear-gradient(to bottom,rgba(83,74,183,.09) 0%,transparent 100%);z-index:1;pointer-events:none}
+.mv-num{position:absolute;top:40px;left:28px;font-size:130px;font-weight:700;line-height:1;z-index:2;pointer-events:none;font-family:'Titillium Web',sans-serif;letter-spacing:-.04em}
+.mv-logo{position:absolute;top:24px;right:24px;height:20px;width:auto;z-index:10;opacity:.55}
+.mv-logo-inv{filter:brightness(0) invert(1)}
+.mv-ct{position:relative;z-index:2}
+.mv-eye{font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;margin-bottom:12px}
+.mv-title{font-size:40px;font-weight:700;line-height:1.0;letter-spacing:-.01em;margin-bottom:16px}
+.mv-sub{font-size:14px;font-weight:300;line-height:1.72;opacity:.88}
+#mv-bar{position:absolute;top:0;left:0;height:2px;background:#534AB7;z-index:30;transition:width .4s ease}
+#mv-bot{position:absolute;bottom:0;left:0;right:0;height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(10,8,28,.7);backdrop-filter:blur(16px);z-index:20}
+.mv-btn{width:46px;height:46px;border-radius:50%;border:1px solid rgba(175,169,236,.22);background:rgba(30,26,78,.55);color:rgba(255,255,255,.7);font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;-webkit-tap-highlight-color:transparent;padding:0 0 2px}
+.mv-btn:active{background:rgba(83,74,183,.5);border-color:#AFA9EC;color:#fff}
+.mv-btn:disabled{opacity:.18;pointer-events:none}
+#mv-ctr{font-size:11px;font-weight:300;letter-spacing:.22em;color:rgba(255,255,255,.35)}
+</style>
+</head>
+<body>
+
+<!-- ── GATE ── -->
+<div id="gate">
+  <div class="gate-inner">
+    <div class="gate-logo"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+    <div class="gate-super">Brand &amp; Business</div>
+    <div class="gate-title">BY THINKING <em>HEADS</em></div>
+    <div class="gate-by">Strategic Marketing Partner</div>
+    <div class="gate-form">
+      <input class="gate-input" id="gate-pwd" type="password" placeholder="Contraseña" autocomplete="off">
+      <button class="gate-btn" onclick="checkGate()">Acceder</button>
+      <div class="gate-err" id="gate-err"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STAGE ── -->
+<div id="stage-wrap">
+  <div id="stage">
+    <div id="pbar"></div>
+
+    <!-- S1 · PORTADA -->
+    <div class="slide s1 active" id="slide-0">
+      <div class="slide-inner">
+        <div class="sn sn-light">01 / 12</div>
+        <div class="logo logo-light"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+        <!-- Mountain visual -->
+        <div class="s1-mtn af d1">
+          <svg viewBox="0 0 832 720" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="mg1" x1=".42" y1="1" x2=".42" y2="0">
+                <stop offset="0%" stop-color="#0e0c25"/>
+                <stop offset="22%" stop-color="#1E1A4E"/>
+                <stop offset="50%" stop-color="#26215C"/>
+                <stop offset="74%" stop-color="#534AB7"/>
+                <stop offset="100%" stop-color="#AFA9EC" stop-opacity=".82"/>
+              </linearGradient>
+              <linearGradient id="mg2" x1=".58" y1="1" x2=".58" y2="0">
+                <stop offset="0%" stop-color="#1E1A4E" stop-opacity=".05"/>
+                <stop offset="48%" stop-color="#26215C" stop-opacity=".75"/>
+                <stop offset="100%" stop-color="#7F77DD" stop-opacity=".65"/>
+              </linearGradient>
+              <linearGradient id="mg3" x1=".7" y1="1" x2=".7" y2="0">
+                <stop offset="0%" stop-color="#1E1A4E" stop-opacity=".08"/>
+                <stop offset="100%" stop-color="#534AB7" stop-opacity=".38"/>
+              </linearGradient>
+              <radialGradient id="mglow" cx="42%" cy="4%" r="28%">
+                <stop offset="0%" stop-color="#AFA9EC" stop-opacity=".22"/>
+                <stop offset="100%" stop-color="transparent"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="350" cy="0" rx="300" ry="220" fill="url(#mglow)"/>
+            <polygon points="600,340 832,720 370,720" fill="url(#mg3)"/>
+            <polygon points="210,285 520,720 -60,720" fill="url(#mg2)"/>
+            <polygon points="350,28 680,720 20,720" fill="url(#mg1)"/>
+            <polygon points="350,28 378,86 322,86" fill="white" opacity=".06"/>
+            <circle cx="350" cy="28" r="4" fill="#AFA9EC" opacity=".65"/>
+            <line x1="50" y1="590" x2="700" y2="590" stroke="rgba(175,169,236,0.035)" stroke-width="1"/>
+            <line x1="100" y1="460" x2="680" y2="460" stroke="rgba(175,169,236,0.028)" stroke-width="1"/>
+            <line x1="155" y1="338" x2="620" y2="338" stroke="rgba(175,169,236,0.022)" stroke-width="1"/>
+            <line x1="210" y1="225" x2="560" y2="225" stroke="rgba(175,169,236,0.016)" stroke-width="1"/>
+            <line x1="268" y1="130" x2="480" y2="130" stroke="rgba(175,169,236,0.012)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="s1-grad"></div>
+        <!-- Text -->
+        <div class="s1-body">
+          <div class="al eyebrow" style="color:#7F77DD">Brand &amp; Business</div>
+          <div class="rw"><div class="ri d1 s1-big">BRAND <span class="s1-amp">&amp;</span></div></div>
+          <div class="rw"><div class="ri d2 s1-big">BUSINESS</div></div>
+          <div class="s1-by af d3">by Thinking Heads</div>
+          <div class="s1-div ax d4"></div>
+          <div class="af d5 s1-cap">El satélite estratégico<br>de tu departamento de marketing</div>
+        </div>
+        <div class="s1-wt af d6">2026 — Confidencial</div>
+      </div>
+    </div>
+
+    <!-- S2 · QUIÉNES SOMOS — HISTORIA TIMELINE -->
+    <div class="slide qtl" id="slide-1">
+      <div class="slide-inner">
+        <div class="sn sn-light">02 / 12</div>
+        <div class="logo logo-light"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+        <!-- Header -->
+        <div class="al eyebrow">Nuestra historia</div>
+        <div class="rw" style="max-width:760px"><div class="ri d1 qtl-title">De una idea a una consultora global de influencia</div></div>
+        <div class="af d2 qtl-sub">Más de 20 años conectando talento, liderazgo y comunicación para generar impacto real en las organizaciones.</div>
+        <!-- Timeline -->
+        <div class="qtl-wrap">
+          <div class="qtl-line"></div>
+
+          <!-- 2003 · UP -->
+          <div class="qtl-node" style="left:100px">
+            <div class="qtl-top">
+              <div class="qtl-ico"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+              <div class="qtl-year">2003</div>
+              <div class="qtl-name">Fundación de<br>Thinking Heads</div>
+              <div class="qtl-desc">Primera agencia especializada en liderazgo y comunicación de alto nivel.</div>
+              <div class="qtl-vline"></div>
+            </div>
+            <div class="qtl-dot"></div>
+            <div class="qtl-bot"></div>
+          </div>
+
+          <!-- 2008 · DOWN -->
+          <div class="qtl-node" style="left:254px">
+            <div class="qtl-top"></div>
+            <div class="qtl-dot"></div>
+            <div class="qtl-bot">
+              <div class="qtl-vline"></div>
+              <div class="qtl-ico"><svg width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+              <div class="qtl-year">2008</div>
+              <div class="qtl-name">Presencia<br>internacional</div>
+              <div class="qtl-desc">Expansión a mercados europeos y latinoamericanos. Referente global.</div>
+            </div>
+          </div>
+
+          <!-- 2010 · UP -->
+          <div class="qtl-node" style="left:408px">
+            <div class="qtl-top">
+              <div class="qtl-ico"><svg width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+              <div class="qtl-year">2010</div>
+              <div class="qtl-name">Consultora de<br>liderazgo</div>
+              <div class="qtl-desc">Del speaker management a la consultoría integral de liderazgo estratégico.</div>
+              <div class="qtl-vline"></div>
+            </div>
+            <div class="qtl-dot"></div>
+            <div class="qtl-bot"></div>
+          </div>
+
+          <!-- 2012 · DOWN -->
+          <div class="qtl-node" style="left:562px">
+            <div class="qtl-top"></div>
+            <div class="qtl-dot"></div>
+            <div class="qtl-bot">
+              <div class="qtl-vline"></div>
+              <div class="qtl-ico"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l1.82-1.82a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+              <div class="qtl-year">2012</div>
+              <div class="qtl-name">Comunicación<br>corporativa</div>
+              <div class="qtl-desc">Incorporación de servicios de reputación de marca y comunicación estratégica.</div>
+            </div>
+          </div>
+
+          <!-- 2015 · UP -->
+          <div class="qtl-node" style="left:716px">
+            <div class="qtl-top">
+              <div class="qtl-ico"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="qtl-year">2015</div>
+              <div class="qtl-name">Modelo Leadership<br>&amp; Influence</div>
+              <div class="qtl-desc">Metodología propia de influencia y liderazgo organizacional consolidada.</div>
+              <div class="qtl-vline"></div>
+            </div>
+            <div class="qtl-dot"></div>
+            <div class="qtl-bot"></div>
+          </div>
+
+          <!-- 2018 · DOWN -->
+          <div class="qtl-node" style="left:870px">
+            <div class="qtl-top"></div>
+            <div class="qtl-dot"></div>
+            <div class="qtl-bot">
+              <div class="qtl-vline"></div>
+              <div class="qtl-ico"><svg width="18" height="18" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+              <div class="qtl-year">2018</div>
+              <div class="qtl-name">Reputación<br>digital</div>
+              <div class="qtl-desc">Integración de estrategia digital, personal branding y presencia online.</div>
+            </div>
+          </div>
+
+          <!-- 2020 · UP -->
+          <div class="qtl-node" style="left:1024px">
+            <div class="qtl-top">
+              <div class="qtl-ico"><svg width="18" height="18" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+              <div class="qtl-year">2020</div>
+              <div class="qtl-name">Transformación<br>híbrida &amp; digital</div>
+              <div class="qtl-desc">Adaptación del modelo al entorno híbrido y aceleración de la transformación digital.</div>
+              <div class="qtl-vline"></div>
+            </div>
+            <div class="qtl-dot"></div>
+            <div class="qtl-bot"></div>
+          </div>
+
+          <!-- 2025 · DOWN -->
+          <div class="qtl-node" style="left:1178px">
+            <div class="qtl-top"></div>
+            <div class="qtl-dot"></div>
+            <div class="qtl-bot">
+              <div class="qtl-vline"></div>
+              <div class="qtl-ico"><svg width="18" height="18" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+              <div class="qtl-year">2025</div>
+              <div class="qtl-name">Consultora global<br>de influencia</div>
+              <div class="qtl-desc">Referente internacional en liderazgo, marca y comunicación de alto nivel.</div>
+            </div>
+          </div>
+
+        </div><!-- /qtl-wrap -->
+      </div>
+    </div>
+
+    <!-- SNV · NEW VERTICAL — BRAND & BUSINESS LAUNCH -->
+    <div class="slide snv" id="slide-2">
+      <div class="slide-inner">
+        <div class="sn sn-light">03 / 12</div>
+        <div class="logo logo-light"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+
+        <div class="snv-text">
+          <div class="al d1 snv-eye">2026</div>
+          <div class="rw"><div class="ri d2 snv-hl">Brand &amp;<br>Business</div></div>
+          <div class="ax d3 snv-rule"></div>
+          <div class="af d4 snv-sub">Publicidad, marketing y comunicación<br>para compañías que necesitan<br>crecimiento, diferenciación e impacto.</div>
+          <div class="af d6 snv-desc">
+            Thinking Heads incorpora un nuevo vertical especializado<br>
+            en estrategia de marca, creatividad, contenidos,<br>
+            comunicación y soluciones de crecimiento.
+          </div>
+          <div class="af d7 snv-cap" style="font-size:22px;font-weight:600;letter-spacing:.04em;color:#fff;text-transform:none;margin-top:18px">Integrated capabilities for modern brands.</div>
+        </div>
+
+        <!-- Capability System SVG — center at (280,240) in viewBox coords -->
+        <svg class="snv-sys" width="640" height="490" viewBox="-20 -15 640 490"
+             xmlns="http://www.w3.org/2000/svg" font-family="'Titillium Web',sans-serif">
+          <defs>
+            <filter id="nvb" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation="10"/>
+            </filter>
+            <filter id="nvbh" x="-100%" y="-100%" width="300%" height="300%">
+              <feGaussianBlur stdDeviation="18"/>
+            </filter>
+          </defs>
+
+          <!-- Ambient stars -->
+          <circle class="nv-star" cx="48"  cy="82"  r="1.5" opacity=".18"/>
+          <circle class="nv-star" cx="570" cy="38"  r="1"   opacity=".15"/>
+          <circle class="nv-star" cx="24"  cy="374" r="1"   opacity=".2"/>
+          <circle class="nv-star" cx="590" cy="415" r="1.5" opacity=".14"/>
+          <circle class="nv-star" cx="390" cy="10"  r="1"   opacity=".18"/>
+          <circle class="nv-star" cx="135" cy="458" r="1.2" opacity=".16"/>
+          <circle class="nv-star" cx="510" cy="462" r="1"   opacity=".13"/>
+          <circle class="nv-star" cx="60"  cy="200" r=".8"  opacity=".12"/>
+          <circle class="nv-star" cx="530" cy="290" r=".8"  opacity=".1"/>
+
+          <!-- Orbit rings -->
+          <circle class="nv-orbit nv-orbit-i" cx="280" cy="240" r="130"/>
+          <circle class="nv-orbit nv-orbit-o" cx="280" cy="240" r="215"/>
+
+          <!-- ── Lines from hub to each node ── -->
+          <!-- inner ring -->
+          <line class="nv-line" x1="280" y1="240" x2="280" y2="110" style="animation-delay:.38s"/>
+          <line class="nv-line" x1="280" y1="240" x2="410" y2="240" style="animation-delay:.50s"/>
+          <line class="nv-line" x1="280" y1="240" x2="280" y2="370" style="animation-delay:.62s"/>
+          <line class="nv-line" x1="280" y1="240" x2="150" y2="240" style="animation-delay:.55s"/>
+          <!-- outer ring -->
+          <line class="nv-line" x1="280" y1="240" x2="280" y2="25"  style="animation-delay:.44s"/>
+          <line class="nv-line" x1="280" y1="240" x2="466" y2="132" style="animation-delay:.58s"/>
+          <line class="nv-line" x1="280" y1="240" x2="466" y2="348" style="animation-delay:.72s"/>
+          <line class="nv-line" x1="280" y1="240" x2="94"  y2="348" style="animation-delay:.68s"/>
+          <line class="nv-line" x1="280" y1="240" x2="94"  y2="132" style="animation-delay:.48s"/>
+
+          <!-- ── Hub ── -->
+          <circle class="nv-hub-glow" cx="280" cy="240" r="60"/>
+          <circle class="nv-hub-o"    cx="280" cy="240" r="44"/>
+          <circle class="nv-hub-i"    cx="280" cy="240" r="30"/>
+          <text class="nv-hub-t" x="280" y="236">Brand &amp;</text>
+          <text class="nv-hub-t" x="280" y="248" style="animation-delay:.8s">Business</text>
+          <text class="nv-hub-s" x="280" y="260">vertical</text>
+
+          <!-- ── Inner nodes ── -->
+
+          <!-- STRATEGY (280, 110) — top -->
+          <circle class="nv-glow" cx="280" cy="110" r="20" style="animation-delay:.42s"/>
+          <circle class="nv-ring" cx="280" cy="110" r="11" style="animation-delay:.44s"/>
+          <circle class="nv-dot"  cx="280" cy="110" r="3.5" style="animation-delay:.54s"/>
+          <text class="nv-lbl" x="280" y="90" text-anchor="middle" style="animation-delay:.64s">Strategy</text>
+
+          <!-- CREATIVITY (410, 240) — right -->
+          <circle class="nv-glow" cx="410" cy="240" r="20" style="animation-delay:.54s"/>
+          <circle class="nv-ring" cx="410" cy="240" r="11" style="animation-delay:.56s"/>
+          <circle class="nv-dot"  cx="410" cy="240" r="3.5" style="animation-delay:.66s"/>
+          <text class="nv-lbl" x="430" y="240" text-anchor="start" dominant-baseline="middle" style="animation-delay:.76s">Creativity</text>
+
+          <!-- CONTENT (280, 370) — bottom -->
+          <circle class="nv-glow" cx="280" cy="370" r="20" style="animation-delay:.66s"/>
+          <circle class="nv-ring" cx="280" cy="370" r="11" style="animation-delay:.68s"/>
+          <circle class="nv-dot"  cx="280" cy="370" r="3.5" style="animation-delay:.78s"/>
+          <text class="nv-lbl" x="280" y="393" text-anchor="middle" style="animation-delay:.88s">Content</text>
+
+          <!-- BRAND (150, 240) — left -->
+          <circle class="nv-glow" cx="150" cy="240" r="20" style="animation-delay:.58s"/>
+          <circle class="nv-ring" cx="150" cy="240" r="11" style="animation-delay:.60s"/>
+          <circle class="nv-dot"  cx="150" cy="240" r="3.5" style="animation-delay:.70s"/>
+          <text class="nv-lbl" x="130" y="240" text-anchor="end" dominant-baseline="middle" style="animation-delay:.80s">Brand</text>
+
+          <!-- ── Outer nodes ── -->
+
+          <!-- AI (280, 25) — top -->
+          <circle class="nv-glow" cx="280" cy="25" r="20" style="animation-delay:.48s"/>
+          <circle class="nv-ring" cx="280" cy="25" r="11" style="animation-delay:.50s"/>
+          <circle class="nv-dot"  cx="280" cy="25" r="3.5" style="animation-delay:.60s"/>
+          <text class="nv-lbl" x="280" y="5" text-anchor="middle" style="animation-delay:.70s">AI</text>
+
+          <!-- COMMUNICATION (466, 132) — upper right -->
+          <circle class="nv-glow" cx="466" cy="132" r="20" style="animation-delay:.62s"/>
+          <circle class="nv-ring" cx="466" cy="132" r="11" style="animation-delay:.64s"/>
+          <circle class="nv-dot"  cx="466" cy="132" r="3.5" style="animation-delay:.74s"/>
+          <text class="nv-lbl" x="485" y="132" text-anchor="start" dominant-baseline="middle" style="animation-delay:.84s;font-size:6.5px">Communication</text>
+
+          <!-- INFLUENCE (466, 348) — lower right -->
+          <circle class="nv-glow" cx="466" cy="348" r="20" style="animation-delay:.76s"/>
+          <circle class="nv-ring" cx="466" cy="348" r="11" style="animation-delay:.78s"/>
+          <circle class="nv-dot"  cx="466" cy="348" r="3.5" style="animation-delay:.88s"/>
+          <text class="nv-lbl" x="485" y="348" text-anchor="start" dominant-baseline="middle" style="animation-delay:.98s">Influence</text>
+
+          <!-- PERFORMANCE (94, 348) — lower left -->
+          <circle class="nv-glow" cx="94" cy="348" r="20" style="animation-delay:.72s"/>
+          <circle class="nv-ring" cx="94" cy="348" r="11" style="animation-delay:.74s"/>
+          <circle class="nv-dot"  cx="94" cy="348" r="3.5" style="animation-delay:.84s"/>
+          <text class="nv-lbl" x="75" y="348" text-anchor="end" dominant-baseline="middle" style="animation-delay:.94s">Performance</text>
+
+          <!-- DIGITAL (94, 132) — upper left -->
+          <circle class="nv-glow" cx="94" cy="132" r="20" style="animation-delay:.52s"/>
+          <circle class="nv-ring" cx="94" cy="132" r="11" style="animation-delay:.54s"/>
+          <circle class="nv-dot"  cx="94" cy="132" r="3.5" style="animation-delay:.64s"/>
+          <text class="nv-lbl" x="75" y="132" text-anchor="end" dominant-baseline="middle" style="animation-delay:.74s">Digital</text>
+
+        </svg>
+
+      </div>
+    </div>
+
+    <!-- S3 · QUIÉNES SOMOS — fondo imagen + texto -->
+    <div class="slide s2" id="slide-3">
+      <div class="slide-inner">
+        <div class="sn sn-light">04 / 12</div>
+        <div class="logo logo-light"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+
+        <!-- Fondo: background-image desde CSS. Gradiente izquierda. -->
+        <div class="s2-fade"></div>
+
+        <!-- Texto izquierda -->
+        <div class="s2-left">
+          <div class="al eyebrow">Brand &amp; Business</div>
+          <div class="rw" style="max-width:440px"><div class="ri d1 s2-hl">Somos el <em>satélite estratégico</em> de tu departamento de marketing.</div></div>
+          <div class="af d3 s2-body">Nos integramos en tu organización. Trabajamos contigo desde la estrategia más profunda hasta la ejecución más especializada. No somos una agencia externa. <strong>Somos parte de tu equipo.</strong></div>
+          <div class="au d4 s2-callout">
+            <div class="s2-callout-t">Nos convertimos en una <em>extensión real</em> de tu equipo de marketing.</div>
+            <div class="s2-callout-sub">(A veces incluso somos el departamento de marketing)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- S4 · TRES PILARES -->
+    <div class="slide s3" id="slide-4">
+      <div class="slide-inner">
+        <div class="sn sn-dark">05 / 12</div>
+        <div class="logo logo-dark"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+        <div class="s3-hdr">
+          <div class="s3-hdr-ey al">Nuestra propuesta</div>
+          <div class="rw"><div class="ri d1 s3-hdr-hl">Nuestros tres pilares</div></div>
+        </div>
+        <div class="s3-cols">
+          <!-- VISION -->
+          <div class="s3-col s3-vision">
+            <div class="s3-col-inner">
+              <div class="s3-bg-n">01</div>
+              <div class="s3-p-tag">01 · Vision</div>
+              <div class="s3-p-ico">
+                <svg width="34" height="34" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+              </div>
+              <div class="s3-p-name">VISION</div>
+              <div class="s3-p-text">Desarrollamos estrategias orientadas a impacto, conectando negocio, marca y cultura. Definimos el camino, el mensaje y el posicionamiento para que cada acción tenga sentido y genere resultados reales.</div>
+            </div>
+          </div>
+          <!-- PEOPLE -->
+          <div class="s3-col s3-people">
+            <div class="s3-col-inner">
+              <div class="s3-bg-n">02</div>
+              <div class="s3-p-tag">02 · People</div>
+              <div class="s3-p-ico">
+                <svg width="34" height="34" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="s3-p-name">PEOPLE</div>
+              <div class="s3-p-text">Contamos con una red de partners y colaboradores hiperespecializados que nos permite abordar cualquier proyecto con el mejor talento en cada disciplina.</div>
+            </div>
+          </div>
+          <!-- FUTURE -->
+          <div class="s3-col s3-future">
+            <div class="s3-col-inner">
+              <div class="s3-bg-n">03</div>
+              <div class="s3-p-tag">03 · Future</div>
+              <div class="s3-p-ico">
+                <svg width="34" height="34" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div class="s3-p-name">FUTURE</div>
+              <div class="s3-p-text">Incorporamos metodologías, tecnología y nuevas narrativas para crear soluciones innovadoras que diferencian a las marcas y las preparan para lo que viene.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S5 · LO QUE HACEMOS -->
+    <div class="slide s4" id="slide-5">
+      <div class="slide-inner">
+        <div class="sn sn-light">06 / 12</div>
+        <div class="logo logo-light"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+        <!-- Mountain watermark -->
+        <div class="mtn-wm">
+          <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="240,30 420,480 60,480" fill="#AFA9EC"/>
+            <polygon points="160,150 310,480 10,480" fill="#7F77DD" opacity=".6"/>
+            <polygon points="320,110 470,480 170,480" fill="#534AB7" opacity=".45"/>
+          </svg>
+        </div>
+        <div class="al"><div class="eyebrow">Servicios</div></div>
+        <div class="rw"><div class="ri d1 s4-hl">Lo que hacemos</div></div>
+        <div class="s4-grid" style="margin-top:14px">
+          <!-- VISION card -->
+          <div class="s4-card s4c-v">
+            <div class="s4-card-tag">Vision</div>
+            <div class="s4-card-ico"><svg width="32" height="32" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+            <div class="s4-card-name">Estrategia &amp; Marketing</div>
+            <div class="s4-card-main">Branding, posicionamiento, campañas, comunicación.</div>
+            <div class="s4-card-body">Construimos la estrategia que alinea marca, negocio y audiencia. Del insight al plan de acción.</div>
+            <div class="s4-tags">
+              <span class="s4-pill">Branding</span>
+              <span class="s4-pill">Posicionamiento</span>
+              <span class="s4-pill">Campañas</span>
+            </div>
+          </div>
+          <!-- PEOPLE card -->
+          <div class="s4-card s4c-p">
+            <div class="s4-card-tag">People</div>
+            <div class="s4-card-ico"><svg width="32" height="32" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="s4-card-name">Red de partners hiperespecializados</div>
+            <div class="s4-card-main">Creatividad, producción, media, tecnología.</div>
+            <div class="s4-card-body">El talento exacto para cada proyecto. Sin estructura fija innecesaria. Sin compromisos vacíos.</div>
+            <div class="s4-tags">
+              <span class="s4-pill">Creatividad</span>
+              <span class="s4-pill">Producción</span>
+              <span class="s4-pill">Media</span>
+            </div>
+          </div>
+          <!-- FUTURE card -->
+          <div class="s4-card s4c-f">
+            <div class="s4-card-tag">Future</div>
+            <div class="s4-card-ico"><svg width="32" height="32" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <div class="s4-card-name">IA, automatización y nuevas plataformas</div>
+            <div class="s4-card-main">Soluciones que multiplican resultados.</div>
+            <div class="s4-card-body">Preparamos tu marca para lo que viene. Metodología, tecnología y narrativa aplicada al presente.</div>
+            <div class="s4-tags">
+              <span class="s4-pill">IA aplicada</span>
+              <span class="s4-pill">Automatización</span>
+              <span class="s4-pill">Innovación</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S6 · THE PEAK -->
+    <div class="slide s5" id="slide-6">
+      <div class="slide-inner">
+        <!-- Full-width mountain illustration -->
+        <div class="s5-mtn">
+          <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="s5m1" x1=".5" y1="1" x2=".5" y2="0">
+                <stop offset="0%" stop-color="#0e0c25"/>
+                <stop offset="22%" stop-color="#1E1A4E"/>
+                <stop offset="48%" stop-color="#26215C"/>
+                <stop offset="70%" stop-color="#534AB7"/>
+                <stop offset="88%" stop-color="#7F77DD"/>
+                <stop offset="100%" stop-color="#AFA9EC" stop-opacity=".8"/>
+              </linearGradient>
+              <linearGradient id="s5m2" x1=".5" y1="1" x2=".5" y2="0">
+                <stop offset="0%" stop-color="#1E1A4E" stop-opacity=".15"/>
+                <stop offset="55%" stop-color="#26215C" stop-opacity=".8"/>
+                <stop offset="100%" stop-color="#534AB7" stop-opacity=".62"/>
+              </linearGradient>
+              <linearGradient id="s5m3" x1=".5" y1="1" x2=".5" y2="0">
+                <stop offset="0%" stop-color="#0e0c25" stop-opacity=".12"/>
+                <stop offset="100%" stop-color="#26215C" stop-opacity=".5"/>
+              </linearGradient>
+              <radialGradient id="s5glow" cx="50%" cy="3%" r="26%">
+                <stop offset="0%" stop-color="#AFA9EC" stop-opacity=".24"/>
+                <stop offset="100%" stop-color="transparent"/>
+              </radialGradient>
+            </defs>
+            <ellipse cx="640" cy="0" rx="360" ry="240" fill="url(#s5glow)"/>
+            <polygon points="180,390 640,720 -80,720" fill="url(#s5m3)" opacity=".6"/>
+            <polygon points="1100,360 1380,720 820,720" fill="url(#s5m3)" opacity=".55"/>
+            <polygon points="330,230 680,720 -20,720" fill="url(#s5m2)" opacity=".78"/>
+            <polygon points="950,210 1300,720 600,720" fill="url(#s5m2)" opacity=".72"/>
+            <polygon points="640,22 1040,720 240,720" fill="url(#s5m1)"/>
+            <polygon points="640,22 670,84 610,84" fill="white" opacity=".07"/>
+            <circle cx="640" cy="22" r="5" fill="#AFA9EC" opacity=".7"/>
+            <line x1="0" y1="610" x2="1280" y2="610" stroke="rgba(175,169,236,0.04)" stroke-width="1"/>
+            <line x1="0" y1="480" x2="1280" y2="480" stroke="rgba(175,169,236,0.032)" stroke-width="1"/>
+            <line x1="0" y1="355" x2="1280" y2="355" stroke="rgba(175,169,236,0.026)" stroke-width="1"/>
+            <line x1="60" y1="235" x2="1220" y2="235" stroke="rgba(175,169,236,0.018)" stroke-width="1"/>
+            <line x1="180" y1="130" x2="1100" y2="130" stroke="rgba(175,169,236,0.013)" stroke-width="1"/>
+            <line x1="340" y1="58" x2="940" y2="58" stroke="rgba(175,169,236,0.009)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="s5-grad"></div>
+        <!-- Content overlay at bottom -->
+        <div class="s5-content">
+          <div class="s5-eye af d1">Nuestra metodología</div>
+          <div class="rw" style="max-width:680px"><div class="ri d2 s5-title">THE PEAK<span style="font-size:.28em;vertical-align:super;color:#AFA9EC">™</span></div></div>
+          <div class="af d3 s5-sub">Metodología de posicionamiento de marca</div>
+          <div class="af d4 s5-desc">Cada marca tiene una cima única. Una posición que nadie más puede ocupar.
+            THE PEAK es la metodología con la que encontramos esa posición, la construimos desde dentro y la activamos hacia el mundo.
+            Tres fases. Un destino.</div>
+          <div class="s5-phases">
+            <div class="s5-ph">BASE CAMP</div>
+            <div class="s5-arr">›</div>
+            <div class="s5-ph">THE ASCENT</div>
+            <div class="s5-arr">›</div>
+            <div class="s5-ph">THE SUMMIT</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S7 · BASE CAMP -->
+    <div class="slide s6" id="slide-7">
+      <div class="slide-inner">
+        <div class="sn sn-light">08 / 12</div>
+        <div class="logo logo-light"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+        <!-- Mountain watermark -->
+        <div class="mtn-wm">
+          <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="240,30 420,480 60,480" fill="#AFA9EC"/>
+            <polygon points="160,150 310,480 10,480" fill="#7F77DD" opacity=".6"/>
+            <polygon points="320,110 470,480 170,480" fill="#534AB7" opacity=".45"/>
+          </svg>
+        </div>
+        <!-- Phase indicator -->
+        <div class="phase-ind al">
+          <div class="phase-dot on"></div>
+          <div class="phase-sep"></div>
+          <div class="phase-dot"></div>
+          <div class="phase-sep"></div>
+          <div class="phase-dot"></div>
+          <div class="phase-lbl" style="margin-left:4px">THE PEAK · Fase 1 de 3</div>
+        </div>
+        <div class="rw"><div class="ri d1 s6-hl">FASE 1: <em>BASE CAMP</em></div></div>
+        <div class="af d2 s6-intro">Antes de ascender hay que conocer el terreno. Un alpinista no empieza a escalar sin mapear la montaña, entender las condiciones y conocer sus propias capacidades.</div>
+        <div class="s6-cards">
+          <div class="s6-card s6c-a">
+            <div class="s6-card-n">Mirada 01</div>
+            <div class="s6-card-name">DENTRO</div>
+            <div class="s6-card-body">Análisis interno de la compañía. Cultura, negocio, capacidades. Desde dónde operamos y qué tenemos realmente disponible para el ascenso.</div>
+          </div>
+          <div class="s6-card s6c-b">
+            <div class="s6-card-n">Mirada 02</div>
+            <div class="s6-card-name">FUERA</div>
+            <div class="s6-card-body">Análisis del entorno competitivo. Dónde está el espacio libre. Qué cimas ya están ocupadas y dónde existe la posibilidad de ser únicos.</div>
+          </div>
+          <div class="s6-card s6c-c">
+            <div class="s6-card-n">Mirada 03</div>
+            <div class="s6-card-name">LOS OTROS</div>
+            <div class="s6-card-body">Cómo nos percibe nuestra audiencia. La verdad desde fuera. La diferencia entre lo que creemos ser y lo que realmente proyectamos.</div>
+          </div>
+        </div>
+        <div class="au d5 s6-q">
+          <div class="s6-q-t">La pregunta central: <strong>¿Desde dónde partimos y qué cima queremos escalar?</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S8 · THE ASCENT -->
+    <div class="slide s7" id="slide-8">
+      <div class="slide-inner" style="padding:40px 52px 44px">
+        <div class="sn sn-light">09 / 12</div>
+        <div class="logo logo-light"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+        <!-- Phase indicator -->
+        <div class="phase-ind al" style="margin-bottom:6px">
+          <div class="phase-dot"></div>
+          <div class="phase-sep"></div>
+          <div class="phase-dot on"></div>
+          <div class="phase-sep"></div>
+          <div class="phase-dot"></div>
+          <div class="phase-lbl" style="margin-left:4px">THE PEAK · Fase 2 de 3</div>
+        </div>
+        <div class="rw" style="margin-bottom:14px"><div class="ri d1 s7-hl">FASE 2: <em>THE ASCENT</em></div></div>
+        <!-- Mountain image -->
+        <div class="af d2" style="flex:1;display:flex;align-items:flex-start;justify-content:center;min-height:0;overflow:visible;padding-bottom:56px">
+          <img src="assets/assets%20/monta%C3%B1a.PNG" alt="The Ascent — Metodología THE PEAK" style="max-height:100%;max-width:82%;object-fit:contain;display:block">
+        </div>
+      </div>
+    </div>
+
+    <!-- S9 · THE SUMMIT -->
+    <div class="slide s8" id="slide-9">
+      <div class="slide-inner">
+        <div class="sn sn-dark">10 / 12</div>
+        <div class="logo logo-dark"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+        <!-- Phase indicator -->
+        <div class="phase-ind al">
+          <div class="phase-dot" style="border-color:rgba(83,74,183,.3)"></div>
+          <div class="phase-sep" style="background:rgba(83,74,183,.2)"></div>
+          <div class="phase-dot" style="border-color:rgba(83,74,183,.3)"></div>
+          <div class="phase-sep" style="background:rgba(83,74,183,.2)"></div>
+          <div class="phase-dot on"></div>
+          <div class="phase-lbl" style="margin-left:4px;color:rgba(83,74,183,.5)">THE PEAK · Fase 3 de 3</div>
+        </div>
+        <div class="rw"><div class="ri d1 s8-hl">FASE 3: <em>THE SUMMIT</em></div></div>
+        <div class="af d2 s8-intro">La cima no es el final. Es el nuevo punto de partida. Convertimos el posicionamiento en presencia real en el mundo.</div>
+        <div class="s8-cards">
+          <div class="s8-card s8c-a">
+            <div class="s8-card-n">Entregable 01</div>
+            <div class="s8-card-name">PLATAFORMA DE COMUNICACIÓN</div>
+            <div class="s8-card-body">El sistema que traduce la marca en mensajes relevantes para cada audiencia. El lenguaje, el tono y los ejes narrativos que hacen visible la posición.</div>
+          </div>
+          <div class="s8-card s8c-b">
+            <div class="s8-card-n">Entregable 02</div>
+            <div class="s8-card-name">PLAN DE MARKETING</div>
+            <div class="s8-card-body">La hoja de ruta para ocupar la cima y hacerla inamovible. Canales, momentos, formatos y tácticas que convierten el posicionamiento en acción.</div>
+          </div>
+        </div>
+        <div class="au d5 s8-closing">
+          <div class="s8-closing-t">No basta con llegar. <strong>Hay que establecerse, hacerse visible y demostrar al mundo que esta cima es tuya.</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S10 · INNOVACIÓN -->
+    <div class="slide s9" id="slide-10">
+      <div class="slide-inner">
+        <div class="sn sn-light">11 / 12</div>
+        <div class="logo logo-light"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+        <!-- Mountain watermark -->
+        <div class="mtn-wm">
+          <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="240,30 420,480 60,480" fill="#AFA9EC"/>
+            <polygon points="160,150 310,480 10,480" fill="#7F77DD" opacity=".6"/>
+            <polygon points="320,110 470,480 170,480" fill="#534AB7" opacity=".45"/>
+          </svg>
+        </div>
+        <div class="al"><div class="eyebrow">Innovación</div></div>
+        <div class="rw"><div class="ri d1 s9-hl">La capa de inteligencia</div></div>
+        <div class="af d2 s9-sub">Incorporamos TH CENTAUR™ como metodología de transformación Human + AI para equipos de marketing.</div>
+        <!-- Hero block -->
+        <div class="au d3 s9-hero">
+          <div class="s9-hero-inner">
+            <div class="s9-hero-lft">
+              <div class="s9-hero-title">TH CENTAUR<em>™</em></div>
+              <div class="s9-hero-sub">Human + AI Marketing Transformation</div>
+              <div class="s9-hero-body">
+                El futuro del marketing no es Humano vs IA. Es Humano + IA.<br>
+                Rediseñamos equipos y flujos para que la inteligencia artificial
+                amplíe el criterio humano en lugar de sustituirlo.
+              </div>
+            </div>
+            <div class="s9-hero-rgt">
+              <div class="s9-stat"><div class="s9-stat-n">La metodología</div><div class="s9-stat-v">Think · Create · Produce · Learn</div></div>
+              <div class="s9-stat"><div class="s9-stat-n">El resultado</div><div class="s9-stat-v">Más velocidad, más escala, más criterio humano preservado</div></div>
+              <div class="s9-stat"><div class="s9-stat-n">El proceso</div><div class="s9-stat-v">Workshop de transformación + hoja de ruta a 18 meses</div></div>
+            </div>
+          </div>
+        </div>
+        <!-- Four pillars -->
+        <div class="s9-pillars" style="margin-top:3px">
+          <div class="s9-pillar">
+            <div class="s9-pillar-n">01 · Think</div>
+            <div class="s9-pillar-name">Humano 75%</div>
+            <div class="s9-pillar-body">Estrategia, decisiones e interpretación de insights.</div>
+          </div>
+          <div class="s9-pillar">
+            <div class="s9-pillar-n">02 · Create</div>
+            <div class="s9-pillar-name">Humano 65%</div>
+            <div class="s9-pillar-body">Concepto creativo, dirección y coherencia de marca.</div>
+          </div>
+          <div class="s9-pillar">
+            <div class="s9-pillar-n">03 · Produce</div>
+            <div class="s9-pillar-name">IA 70%</div>
+            <div class="s9-pillar-body">Adaptación, localización y versionado masivo.</div>
+          </div>
+          <div class="s9-pillar">
+            <div class="s9-pillar-n">04 · Learn</div>
+            <div class="s9-pillar-name">Hybrid 50%</div>
+            <div class="s9-pillar-body">Reporting, patrones y priorización estratégica.</div>
+          </div>
+        </div>
+        <!-- CTA -->
+        <div class="au d8 s9-cta">
+          <a href="https://th-centaur.onrender.com" target="_blank" rel="noopener">
+            Ir a la metodología
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- S11 · CREDENCIALES -->
+    <div class="slide s10" id="slide-11">
+      <div class="slide-inner">
+        <div class="sn sn-dark">12 / 12</div>
+        <div class="logo logo-dark"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+        <div class="al s10-eye">Proyectos</div>
+        <div class="rw"><div class="ri d1 s10-hl">Credenciales</div></div>
+        <div class="s10-div ax d3"></div>
+        <div class="af d4 s10-sub">Una selección de proyectos en los que hemos sido el satélite estratégico de marcas que decidieron moverse de verdad.</div>
+        <div class="af d5 s10-note">62 casos · navega con las flechas →</div>
+      </div>
+    </div>
+
+
+    <!-- CR · ÁREAS DE ESPECIALIZACIÓN -->
+    <div class="slide cr-areas" id="slide-12">
+      <div class="slide-inner">
+        <div class="cr-areas-top">
+          <div class="al cr-eye">Qué hacemos</div>
+          <div class="rw"><div class="ri d2 cr-hl" style="font-size:42px">Áreas de especialización</div></div>
+        </div>
+        <div class="cr-areas-grid">
+          <div class="cr-card">
+            <div class="cr-card-num">01</div>
+            <div class="cr-card-ttl">Branding &amp; Positioning</div>
+            <div class="cr-card-dsc">Naming, identidad visual, posicionamiento y arquitectura de marca.</div>
+          </div>
+          <div class="cr-card">
+            <div class="cr-card-num">02</div>
+            <div class="cr-card-ttl">Campañas &amp; Comunicación</div>
+            <div class="cr-card-dsc">Concepto creativo, campañas integradas y storytelling.</div>
+          </div>
+          <div class="cr-card">
+            <div class="cr-card-num">03</div>
+            <div class="cr-card-ttl">Growth &amp; Performance</div>
+            <div class="cr-card-dsc">Captación, performance marketing y crecimiento digital.</div>
+          </div>
+          <div class="cr-card">
+            <div class="cr-card-num">04</div>
+            <div class="cr-card-ttl">Digital Experiences</div>
+            <div class="cr-card-dsc">Web, ecommerce, landings y producción digital.</div>
+          </div>
+          <div class="cr-card">
+            <div class="cr-card-num">05</div>
+            <div class="cr-card-ttl">Influence &amp; Community</div>
+            <div class="cr-card-dsc">Embajadores, influencers y programas de comunidad.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · CASE STUDIES HERO -->
+    <div class="slide cr-hero" id="slide-13">
+      <div class="slide-inner">
+        <div>
+          <div class="al cr-eye">Proyectos seleccionados</div>
+          <div class="rw"><div class="ri d2" style="font-family:'Titillium Web',sans-serif;font-size:54px;font-weight:700;color:#fff;letter-spacing:-.025em;line-height:.95">Case Studies</div></div>
+        </div>
+        <div class="cr-hero-list">
+          <div class="cr-hero-item">
+            <span class="cr-hero-n">01</span>
+            <span class="cr-hero-name" style="font-size:28px">Imedexa</span>
+            <span class="cr-hero-svc">Rebranding y reposicionamiento industrial</span>
+            <span class="cr-hero-claim">"We are drivers of change"</span>
+          </div>
+          <div class="cr-hero-item">
+            <span class="cr-hero-n">02</span>
+            <span class="cr-hero-name" style="font-size:28px">Ibercaja</span>
+            <span class="cr-hero-svc">Reposicionamiento estratégico emocional</span>
+            <span class="cr-hero-claim">"El banco del vamos"</span>
+          </div>
+          <div class="cr-hero-item">
+            <span class="cr-hero-n">03</span>
+            <span class="cr-hero-name" style="font-size:28px">Culmia</span>
+            <span class="cr-hero-svc">Creación de marca y lanzamiento inmobiliario</span>
+            <span class="cr-hero-claim"></span>
+          </div>
+          <div class="cr-hero-item">
+            <span class="cr-hero-n">04</span>
+            <span class="cr-hero-name" style="font-size:28px">Nofakes</span>
+            <span class="cr-hero-svc">Naming, branding y lanzamiento</span>
+            <span class="cr-hero-claim"></span>
+          </div>
+          <div class="cr-hero-item">
+            <span class="cr-hero-n">05</span>
+            <span class="cr-hero-name" style="font-size:28px">Billionhands</span>
+            <span class="cr-hero-svc">Construcción integral de marca y evolución marketplace</span>
+            <span class="cr-hero-claim"></span>
+          </div>
+          <div class="cr-hero-item">
+            <span class="cr-hero-n">06</span>
+            <span class="cr-hero-name" style="font-size:28px">Pibank</span>
+            <span class="cr-hero-svc">Naming, identidad y lanzamiento de neobank</span>
+            <span class="cr-hero-claim"></span>
+          </div>
+          <div class="cr-hero-item">
+            <span class="cr-hero-n">07</span>
+            <span class="cr-hero-name" style="font-size:28px">Kimoa</span>
+            <span class="cr-hero-svc">Estrategia y campaña de marca lifestyle</span>
+            <span class="cr-hero-claim"></span>
+          </div>
+          <div class="cr-hero-item">
+            <span class="cr-hero-n">08</span>
+            <span class="cr-hero-name" style="font-size:28px">Reclamador</span>
+            <span class="cr-hero-svc">Growth, performance y lanzamiento digital</span>
+            <span class="cr-hero-claim"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · IMEDEXA -->
+    <div class="slide cr-case" id="slide-14">
+      <div class="slide-inner">
+        <div class="cr-case-left">
+          <div class="al cr-eye">Industrial Branding</div>
+          <div class="rw"><div class="ri d2 cr-hl">Imedexa</div></div>
+          <div class="cr-rule ax d3"></div>
+          <div class="af d4 cr-body">Reposicionamiento estratégico y rebranding para una compañía industrial vinculada a la transición ecológica.</div>
+          <div class="af d5 cr-quote">"We are drivers of change"</div>
+          <div class="af d6 cr-pills">
+            <span class="cr-pill">Naming evolution</span>
+            <span class="cr-pill">Brand positioning</span>
+            <span class="cr-pill">Visual identity</span>
+            <span class="cr-pill">Corporate communication</span>
+            <span class="cr-pill">Web development</span>
+          </div>
+        </div>
+        <div class="cr-case-right">
+          <div class="cr-case-wm">Imedexa</div>
+          <img class="cr-case-logo af d4" src="assets/assets%20/logos/imedexa.png" alt="Imedexa">
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · IBERCAJA -->
+    <div class="slide cr-case" id="slide-15">
+      <div class="slide-inner">
+        <div class="cr-case-left">
+          <div class="al cr-eye">Strategic Positioning</div>
+          <div class="rw"><div class="ri d2 cr-hl">Ibercaja</div></div>
+          <div class="cr-rule ax d3"></div>
+          <div class="af d4 cr-body">Nuevo posicionamiento emocional para conectar con una nueva generación de clientes.</div>
+          <div class="af d5 cr-quote">"El banco del vamos"</div>
+          <div class="af d6 cr-pills">
+            <span class="cr-pill">Strategic positioning</span>
+            <span class="cr-pill">Brand campaign</span>
+            <span class="cr-pill">Communication platform</span>
+          </div>
+        </div>
+        <div class="cr-case-right">
+          <div class="cr-case-wm">Ibercaja</div>
+          <div class="cr-case-media af d4">
+            <div class="cr-vids-wrap single">
+              <div class="cr-vid-item">
+                <div class="cr-video-lbl">Campaña</div>
+                <video class="cr-video" src="assets/assets%20/Videos/ibercaja.mp4" controls preload="none"></video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · CULMIA -->
+    <div class="slide cr-case" id="slide-16">
+      <div class="slide-inner">
+        <div class="cr-case-left">
+          <div class="al cr-eye">Real Estate Branding</div>
+          <div class="rw"><div class="ri d2 cr-hl">Culmia</div></div>
+          <div class="cr-rule ax d3"></div>
+          <div class="af d4 cr-body">Creación de naming, identidad y lanzamiento para la nueva promotora inmobiliaria adquirida por Oaktree.</div>
+          <div class="af d6 cr-pills">
+            <span class="cr-pill">Naming</span>
+            <span class="cr-pill">Brand identity</span>
+            <span class="cr-pill">Launch campaign</span>
+            <span class="cr-pill">Positioning</span>
+          </div>
+        </div>
+        <div class="cr-case-right">
+          <div class="cr-case-wm">Culmia</div>
+          <div class="cr-case-media af d4">
+            <div class="cr-vids-wrap single">
+              <img src="assets/assets%20/Piezas/culmia_destinotuhogar.png" alt="Culmia — Destino tu Hogar" style="width:100%;border-radius:6px;border:1px solid rgba(175,169,236,.12);display:block;object-fit:contain;background:#0e0c25">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · BILLIONHANDS -->
+    <div class="slide cr-case" id="slide-17">
+      <div class="slide-inner">
+        <div class="cr-case-left">
+          <div class="al cr-eye">Marketplace Evolution</div>
+          <div class="rw"><div class="ri d2 cr-hl">Billionhands</div></div>
+          <div class="cr-rule ax d3"></div>
+          <div class="af d4 cr-body">Creación y evolución de una marca digital enfocada en descuentos, moda y comunidad.</div>
+          <div class="af d6 cr-pills">
+            <span class="cr-pill">Branding</span>
+            <span class="cr-pill">Rebranding</span>
+            <span class="cr-pill">Sonic branding</span>
+            <span class="cr-pill">Growth campaigns</span>
+            <span class="cr-pill">Digital ecosystem</span>
+          </div>
+        </div>
+        <div class="cr-case-right">
+          <div class="cr-case-wm">BH</div>
+          <div class="cr-case-media af d4">
+            <div class="cr-vids-wrap dual">
+              <div class="cr-vid-item">
+                <div class="cr-video-lbl">Pieza</div>
+                <img src="assets/assets%20/Piezas/Billionhands.png" alt="Billionhands pieza" style="width:100%;border-radius:6px;border:1px solid rgba(175,169,236,.12);display:block;object-fit:contain;background:#0e0c25">
+              </div>
+              <div class="cr-vid-item">
+                <div class="cr-video-lbl">Campaña</div>
+                <video class="cr-video" src="assets/assets%20/Videos/billionhands.mp4" controls preload="none"></video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · PIBANK -->
+    <div class="slide cr-case" id="slide-18">
+      <div class="slide-inner">
+        <div class="cr-case-left">
+          <div class="al cr-eye">Fintech Branding</div>
+          <div class="rw"><div class="ri d2 cr-hl">Pibank</div></div>
+          <div class="cr-rule ax d3"></div>
+          <div class="af d4 cr-body">Naming, identidad y campaña de lanzamiento para un neobank disruptivo orientado al gran público.</div>
+          <div class="af d6 cr-pills">
+            <span class="cr-pill">Naming</span>
+            <span class="cr-pill">Brand identity</span>
+            <span class="cr-pill">Launch campaign</span>
+            <span class="cr-pill">Video concept</span>
+            <span class="cr-pill">Digital</span>
+          </div>
+        </div>
+        <div class="cr-case-right">
+          <div class="cr-case-wm">Pibank</div>
+          <div class="cr-case-media af d4">
+            <div class="cr-vids-wrap dual">
+              <div class="cr-vid-item">
+                <div class="cr-video-lbl">Videoconcept</div>
+                <video class="cr-video" src="assets/assets%20/Videos/Pibank_Videoconcept.mp4" controls preload="none"></video>
+              </div>
+              <div class="cr-vid-item">
+                <div class="cr-video-lbl">Campaña</div>
+                <video class="cr-video" src="assets/assets%20/Videos/Pibank_campa%C3%B1a.mp4" controls preload="none"></video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · KIMOA -->
+    <div class="slide cr-case" id="slide-19">
+      <div class="slide-inner">
+        <div class="cr-case-left">
+          <div class="al cr-eye">Lifestyle Brand</div>
+          <div class="rw"><div class="ri d2 cr-hl">Kimoa</div></div>
+          <div class="cr-rule ax d3"></div>
+          <div class="af d4 cr-body">Estrategia de marca y campaña para una firma de moda lifestyle vinculada al mundo de la Fórmula 1.</div>
+          <div class="af d6 cr-pills">
+            <span class="cr-pill">Brand strategy</span>
+            <span class="cr-pill">Campaign</span>
+            <span class="cr-pill">Video concept</span>
+            <span class="cr-pill">Lifestyle positioning</span>
+          </div>
+        </div>
+        <div class="cr-case-right">
+          <div class="cr-case-wm">Kimoa</div>
+          <div class="cr-case-media af d4">
+            <div class="cr-vids-wrap dual">
+              <div class="cr-vid-item">
+                <div class="cr-video-lbl">Videoconcept</div>
+                <video class="cr-video" src="assets/assets%20/Videos/kimoa_Videoconcept.mp4" controls preload="none"></video>
+              </div>
+              <div class="cr-vid-item">
+                <div class="cr-video-lbl">Campaña</div>
+                <video class="cr-video" src="assets/assets%20/Videos/kimoa_campa%C3%B1a.mp4" controls preload="none"></video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · RECLAMADOR -->
+    <div class="slide cr-case" id="slide-20">
+      <div class="slide-inner">
+        <div class="cr-case-left">
+          <div class="al cr-eye">Growth & Performance</div>
+          <div class="rw"><div class="ri d2 cr-hl">Reclamador</div></div>
+          <div class="cr-rule ax d3"></div>
+          <div class="af d4 cr-body">Growth, performance y estrategia de lanzamiento digital para la plataforma líder de reclamaciones online.</div>
+          <div class="af d6 cr-pills">
+            <span class="cr-pill">Growth strategy</span>
+            <span class="cr-pill">Performance</span>
+            <span class="cr-pill">Brand campaign</span>
+            <span class="cr-pill">Digital launch</span>
+          </div>
+        </div>
+        <div class="cr-case-right">
+          <div class="cr-case-wm">Reclamador</div>
+          <div class="cr-case-media af d4">
+            <div class="cr-vids-wrap single">
+              <div class="cr-vid-item">
+                <div class="cr-video-lbl">Campaña</div>
+                <video class="cr-video" src="assets/assets%20/Videos/RECLAMADOR.mp4" controls preload="none"></video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · USO -->
+    <div class="slide cr-case" id="slide-21">
+      <div class="slide-inner">
+        <div class="cr-case-left">
+          <div class="al cr-eye">Campaña Social</div>
+          <div class="rw"><div class="ri d2 cr-hl">USO</div></div>
+          <div class="cr-rule ax d3"></div>
+          <div class="af d4 cr-body">Campaña de comunicación y activación para la Unión Sindical Obrera. Estrategia, creatividad y producción audiovisual.</div>
+          <div class="af d6 cr-pills">
+            <span class="cr-pill">Brand strategy</span>
+            <span class="cr-pill">Campaña</span>
+            <span class="cr-pill">Producción audiovisual</span>
+            <span class="cr-pill">Comunicación</span>
+          </div>
+        </div>
+        <div class="cr-case-right">
+          <div class="cr-case-wm">USO</div>
+          <div class="cr-case-media af d4">
+            <div class="cr-vids-wrap single">
+              <div class="cr-vid-item">
+                <div class="cr-video-lbl">Campaña</div>
+                <video class="cr-video" src="assets/assets%20/Videos/USO_Haz%20USO%20de%20tus%20derechos_Campa%C3%B1a.mp4" controls preload="none"></video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · VENTURE CAPITAL -->
+    <div class="slide cr-vc" id="slide-22">
+      <div class="slide-inner">
+        <div class="al cr-eye">Ecosistema inversor</div>
+        <div class="rw"><div class="ri d2 cr-hl" style="font-size:46px">Fondos &amp;<br>Venture Capital</div></div>
+        <div class="cr-rule ax d3"></div>
+        <div class="af d4 cr-vc-sub">Experiencia trabajando junto a fondos y venture builders en procesos de adquisición, posicionamiento y crecimiento.</div>
+        <div class="af d5 cr-vc-grid" style="display:flex;flex-wrap:wrap;gap:14px 32px;align-items:center;margin-top:16px">
+          <span class="cr-vc-fund" style="font-size:22px;font-weight:700;letter-spacing:.02em;color:rgba(255,255,255,.38)">Oaktree</span>
+          <span class="cr-vc-fund" style="font-size:22px;font-weight:700;letter-spacing:.02em;color:rgba(255,255,255,.38)">Samaipata</span>
+          <span class="cr-vc-fund" style="font-size:22px;font-weight:700;letter-spacing:.02em;color:rgba(255,255,255,.38)">NextChance</span>
+          <span class="cr-vc-fund" style="font-size:22px;font-weight:700;letter-spacing:.02em;color:rgba(255,255,255,.38)">GPF Capital</span>
+          <span class="cr-vc-fund" style="font-size:22px;font-weight:700;letter-spacing:.02em;color:rgba(255,255,255,.38)">Seaya</span>
+          <span class="cr-vc-fund" style="font-size:22px;font-weight:700;letter-spacing:.02em;color:rgba(255,255,255,.38)">JB Capital</span>
+          <span class="cr-vc-fund" style="font-size:22px;font-weight:700;letter-spacing:.02em;color:rgba(255,255,255,.38)">JZ International</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · DIGITAL & SOCIAL -->
+    <div class="slide cr-dig" id="slide-23">
+      <div class="slide-inner">
+        <div class="cr-dig-bg"></div>
+        <div class="cr-dig-wrap">
+          <div>
+            <div class="al cr-eye">Marca en acción</div>
+            <div class="rw"><div class="ri d2" style="font-family:'Titillium Web',sans-serif;font-size:46px;font-weight:700;color:#fff;letter-spacing:-.025em;line-height:.95">Marketing Digital<br>&amp; Social</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · NORDÉS -->
+    <div class="slide cr-case" id="slide-24">
+      <div class="slide-inner">
+        <div class="cr-case-left">
+          <div class="al cr-eye">Marketing Digital &amp; Social</div>
+          <div class="rw"><div class="ri d2 cr-hl">Nordés</div></div>
+          <div class="cr-rule ax d3"></div>
+          <div class="af d4 cr-body">Estrategia de contenidos, gestión de redes sociales y campañas digitales para la ginebra gallega premium.</div>
+          <div class="af d6 cr-pills">
+            <span class="cr-pill">Social media</span>
+            <span class="cr-pill">Contenidos</span>
+            <span class="cr-pill">Campañas digitales</span>
+            <span class="cr-pill">Brand storytelling</span>
+          </div>
+        </div>
+        <div class="cr-case-right">
+          <div class="cr-case-wm">Nordés</div>
+          <div class="cr-case-media af d4">
+            <div class="cr-vids-wrap dual">
+              <div class="cr-vid-item">
+                <img src="assets/assets%20/Piezas/Nordes.png" alt="Nordés pieza 1" style="width:100%;border-radius:6px;border:1px solid rgba(175,169,236,.12);display:block;object-fit:contain;background:#0e0c25">
+              </div>
+              <div class="cr-vid-item">
+                <img src="assets/assets%20/Piezas/nordes2.png" alt="Nordés pieza 2" style="width:100%;border-radius:6px;border:1px solid rgba(175,169,236,.12);display:block;object-fit:contain;background:#0e0c25">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · CINCO JOTAS -->
+    <div class="slide cr-case" id="slide-25">
+      <div class="slide-inner">
+        <div class="cr-case-left">
+          <div class="al cr-eye">Marketing Digital &amp; Social</div>
+          <div class="rw"><div class="ri d2 cr-hl">Cinco Jotas</div></div>
+          <div class="cr-rule ax d3"></div>
+          <div class="af d4 cr-body">Gestión de redes sociales, contenidos de marca y campañas digitales para la marca de jamón ibérico premium.</div>
+          <div class="af d6 cr-pills">
+            <span class="cr-pill">Social media</span>
+            <span class="cr-pill">Contenidos</span>
+            <span class="cr-pill">Premium brand</span>
+            <span class="cr-pill">Campañas</span>
+          </div>
+        </div>
+        <div class="cr-case-right">
+          <div class="cr-case-wm">5J</div>
+          <div class="cr-case-media af d4">
+            <div class="cr-vids-wrap dual">
+              <div class="cr-vid-item">
+                <img src="assets/assets%20/Piezas/cinco%20jotas.png" alt="Cinco Jotas pieza 1" style="width:100%;border-radius:6px;border:1px solid rgba(175,169,236,.12);display:block;object-fit:contain;background:#0e0c25">
+              </div>
+              <div class="cr-vid-item">
+                <img src="assets/assets%20/Piezas/cinco%20jotas%202.png" alt="Cinco Jotas pieza 2" style="width:100%;border-radius:6px;border:1px solid rgba(175,169,236,.12);display:block;object-fit:contain;background:#0e0c25">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · CARLOS I -->
+    <div class="slide cr-case" id="slide-26">
+      <div class="slide-inner">
+        <div class="cr-case-left">
+          <div class="al cr-eye">Marketing Digital &amp; Social</div>
+          <div class="rw"><div class="ri d2 cr-hl">Carlos I</div></div>
+          <div class="cr-rule ax d3"></div>
+          <div class="af d4 cr-body">Estrategia de contenidos y marketing digital para la marca de brandy premium más icónica de España.</div>
+          <div class="af d6 cr-pills">
+            <span class="cr-pill">Social media</span>
+            <span class="cr-pill">Contenidos</span>
+            <span class="cr-pill">Premium spirits</span>
+            <span class="cr-pill">Campañas</span>
+          </div>
+        </div>
+        <div class="cr-case-right">
+          <div class="cr-case-wm">CI</div>
+          <div class="cr-case-media af d4">
+            <div class="cr-vids-wrap single">
+              <img src="assets/assets%20/Piezas/CarlosI.png" alt="Carlos I pieza" style="width:100%;border-radius:6px;border:1px solid rgba(175,169,236,.12);display:block;object-fit:contain;background:#0e0c25">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · INFLUENCER MARKETING -->
+    <div class="slide cr-case" id="slide-27">
+      <div class="slide-inner">
+        <div class="cr-case-left">
+          <div class="al cr-eye">Influencer Marketing</div>
+          <div class="rw"><div class="ri d2 cr-hl">Redes de<br>embajadores</div></div>
+          <div class="cr-rule ax d3"></div>
+          <div class="af d4 cr-body">Creamos y gestionamos redes de embajadores de marca: selección estratégica, briefing creativo, activación y medición de impacto.</div>
+          <div class="af d6 cr-pills">
+            <span class="cr-pill">Influencer strategy</span>
+            <span class="cr-pill">Embajadores</span>
+            <span class="cr-pill">Content creators</span>
+            <span class="cr-pill">Activaciones</span>
+          </div>
+        </div>
+        <div class="cr-case-right">
+          <div class="cr-case-wm">Influ</div>
+          <div class="af d4" style="display:flex;gap:28px;align-items:center;justify-content:center;height:100%;padding:0 20px">
+            <!-- Mobile mockup 1: Beruby -->
+            <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:8px">
+              <div style="width:160px;background:#1a1650;border-radius:28px;border:2px solid rgba(175,169,236,.28);overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.55)">
+                <div style="height:16px;background:#0e0c25;border-radius:28px 28px 0 0"></div>
+                <img src="assets/assets%20/Piezas/Beruby.png" alt="Beruby" style="width:100%;display:block;object-fit:contain">
+              </div>
+              <div style="font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(175,169,236,.35)">Beruby</div>
+            </div>
+            <!-- Mobile mockup 2: Billionhands -->
+            <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:8px">
+              <div style="width:160px;background:#1a1650;border-radius:28px;border:2px solid rgba(175,169,236,.28);overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.55)">
+                <div style="height:16px;background:#0e0c25;border-radius:28px 28px 0 0"></div>
+                <img src="assets/assets%20/Piezas/Billionhands_influ.png" alt="Billionhands" style="width:100%;display:block;object-fit:contain">
+              </div>
+              <div style="font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(175,169,236,.35)">Billionhands</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CR · GRACIAS -->
+    <div class="slide cr-close" id="slide-28">
+      <div class="slide-inner">
+        <div class="cr-close-glow"></div>
+        <div class="logo logo-light"><img src="assets/TH1_logos_LOGO_completo_claim-negro-1.png" alt="Thinking Heads"></div>
+        <div class="rw af d1" style="max-width:680px"><div class="ri d2 cr-close-hl">Gracias.</div></div>
+        <div class="ax d4" style="width:44px;height:1px;background:#534AB7;margin:22px 0"></div>
+        <div class="af d5" style="display:flex;flex-direction:column;gap:6px">
+          <a href="mailto:jvg@thinkingheads.com" style="font-size:15px;font-weight:300;color:rgba(175,169,236,.6);letter-spacing:.04em;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#AFA9EC'" onmouseout="this.style.color='rgba(175,169,236,.6)'">jvg@thinkingheads.com</a>
+          <div style="font-size:11px;font-weight:300;color:rgba(175,169,236,.28);letter-spacing:.12em;text-transform:uppercase">Brand &amp; Business — by Thinking Heads</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- NAV -->
+    <nav class="nav-bar">
+      <button class="nav-btn" id="nav-prev" onclick="prev()" disabled>
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="nav-dots" id="dots"></div>
+      <button class="nav-btn" id="nav-next" onclick="next()">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </nav>
+
+  </div><!-- /stage -->
+</div><!-- /stage-wrap -->
+
+<!-- ── MOBILE PLAYER ── -->
+<div id="mobile-view">
+  <div id="mv-track"></div>
+  <div id="mv-bar"></div>
+  <div id="mv-bot">
+    <button class="mv-btn" id="mv-prev" onclick="mPrev()">&#8249;</button>
+    <span id="mv-ctr">1 / 25</span>
+    <button class="mv-btn" id="mv-next" onclick="mNext()">&#8250;</button>
+  </div>
+</div>
+
+<script>
+const PASSES   = ["credenciales26", "jpardo26"];
+const TOTAL    = 29;
+const MAIN     = 12;
+const AUTH_KEY = "bb-brand-auth";
+let cur = 0;
+
+function isPortraitMobile() {
+  return window.innerWidth < 1024 && window.innerHeight > window.innerWidth;
+}
+
+function showDesktopStage() {
+  const sw = document.getElementById("stage-wrap");
+  sw.style.display = "flex";
+  setScale();
+  buildDots();
+  const s1 = document.getElementById("slide-0");
+  s1.classList.remove("active");
+  s1.style.display = "block";
+  s1.getBoundingClientRect();
+  s1.classList.add("active");
+  s1.style.display = "";
+  document.querySelectorAll(".dot")[0]?.classList.add("active");
+  updateUI();
+}
+
+function unlockStage() {
+  document.getElementById("gate").style.display = "none";
+  if (isPortraitMobile()) {
+    buildMobileView();
+    document.getElementById("mobile-view").style.display = "flex";
+    mGoTo(0);
+  } else {
+    showDesktopStage();
+  }
+}
+
+function checkGate() {
+  const v = document.getElementById("gate-pwd").value;
+  if (PASSES.includes(v)) {
+    try { localStorage.setItem(AUTH_KEY, "1"); } catch(e) {}
+    unlockStage();
+  } else {
+    const err = document.getElementById("gate-err");
+    err.textContent = "Contraseña incorrecta";
+    setTimeout(() => err.textContent = "", 2000);
+  }
+}
+
+(function() {
+  try { if (localStorage.getItem(AUTH_KEY) === "1") unlockStage(); } catch(e) {}
+})();
+
+document.getElementById("gate-pwd").addEventListener("keydown", e => {
+  if (e.key === "Enter") checkGate();
+});
+
+function setScale() {
+  const s = document.getElementById("stage");
+  s.style.transform = `scale(${Math.min(window.innerWidth/1280, window.innerHeight/720)})`;
+}
+window.addEventListener("resize", () => {
+  setScale();
+  const mv = document.getElementById("mobile-view");
+  if (mv.style.display === "flex" && !isPortraitMobile()) {
+    mv.style.display = "none";
+    showDesktopStage();
+  }
+});
+
+function buildDots() {
+  const c = document.getElementById("dots");
+  for (let i = 0; i < MAIN; i++) {
+    const d = document.createElement("div");
+    d.className = "dot" + (i === 0 ? " active" : "");
+    d.onclick = () => goTo(i);
+    c.appendChild(d);
+  }
+}
+
+function goTo(n) {
+  if (n < 0 || n >= TOTAL) return;
+  const prev = document.getElementById("slide-" + cur);
+  prev.classList.remove("active");
+  prev.style.display = "";
+  document.querySelectorAll(".dot")[Math.min(cur, MAIN - 1)].classList.remove("active");
+  cur = n;
+  const s = document.getElementById("slide-" + cur);
+  s.style.display = "block";
+  s.getBoundingClientRect();
+  s.classList.add("active");
+  s.style.display = "";
+  document.querySelectorAll(".dot")[Math.min(cur, MAIN - 1)].classList.add("active");
+  updateUI();
+}
+
+function next() { goTo(cur + 1); }
+function prev() { goTo(cur - 1); }
+
+function updateUI() {
+  document.getElementById("pbar").style.width = ((cur + 1) / TOTAL * 100) + "%";
+  document.getElementById("nav-prev").disabled = cur === 0;
+  document.getElementById("nav-next").disabled = cur === TOTAL - 1;
+}
+
+document.addEventListener("keydown", e => {
+  if (document.getElementById("stage-wrap").style.display !== "flex") return;
+  if (e.key === "ArrowRight" || e.key === "ArrowDown") next();
+  if (e.key === "ArrowLeft"  || e.key === "ArrowUp")   prev();
+});
+
+// ── MOBILE PLAYER ─────────────────────────────────────────────────
+const MS = [
+  {bg:'#1E1A4E', dark:1, eye:'Brand & Business',    title:'BRAND &\nBUSINESS',            sub:'by Thinking Heads'},
+  {bg:'#0e0c25', dark:1, eye:'Nuestra historia',    title:'De una idea a\nuna consultora',  sub:'Más de 20 años conectando talento,\nliderazgo y comunicación.'},
+  {bg:'#1E1A4E', dark:1, eye:'Quiénes somos',       title:'El satélite\nestratégico',       sub:'Nos integramos en tu organización.\nEstrategia + ejecución.'},
+  {bg:'#fff',    dark:0, eye:'Nuestra propuesta',   title:'Tres pilares',                   sub:'Vision · People · Future'},
+  {bg:'#0e0c25', dark:1, eye:'Servicios',            title:'Lo que\nhacemos',               sub:'Estrategia, talento\ne innovación aplicada'},
+  {bg:'#1E1A4E', dark:1, eye:'La metodología',      title:'THE PEAK™',                      sub:'Metodología de posicionamiento\nde marca. Tres fases. Un destino.'},
+  {bg:'#26215C', dark:1, eye:'Fase 1 · THE PEAK',   title:'BASE CAMP',                      sub:'Dentro · Fuera · Los otros.\nConoce el terreno antes de ascender.'},
+  {bg:'#1E1A4E', dark:1, eye:'Fase 2 · THE PEAK',   title:'THE ASCENT',                     sub:'Why · Pioneers · Experience · Code.\nCuatro capas que forjan la marca.'},
+  {bg:'#EEEDFE', dark:0, eye:'Fase 3 · THE PEAK',   title:'THE SUMMIT',                     sub:'Plataforma de comunicación\n+ Plan de marketing'},
+  {bg:'#1E1A4E', dark:1, eye:'Innovación',          title:'TH CENTAUR™',                    sub:'Transformación Human + AI\npara tu equipo de marketing'},
+  {bg:'#fff',    dark:0, eye:'Proyectos',            title:'Credenciales',                   sub:'9 slides · Ver en pantalla completa'},
+];
+let mCur = 0, mBuilt = false;
+
+function buildMobileView() {
+  if (mBuilt) return;
+  mBuilt = true;
+  const track = document.getElementById("mv-track");
+  MS.forEach((m, i) => {
+    const c = document.createElement("div");
+    c.className = "mv-card";
+    c.style.background = m.bg;
+
+    const gr = document.createElement("div");
+    gr.className = "mv-grad";
+    gr.style.background = m.dark
+      ? "linear-gradient(to top,rgba(14,12,37,.96) 0%,rgba(14,12,37,.55) 45%,rgba(14,12,37,.06) 100%)"
+      : "linear-gradient(to top,rgba(255,255,255,1) 0%,rgba(255,255,255,.88) 50%,rgba(255,255,255,.22) 100%)";
+    c.appendChild(gr);
+
+    const glow = document.createElement("div");
+    glow.className = m.dark ? "mv-glow" : "mv-lglow";
+    c.appendChild(glow);
+
+    const num = document.createElement("div");
+    num.className = "mv-num";
+    num.textContent = String(i+1).padStart(2,'0');
+    num.style.color = m.dark ? "rgba(175,169,236,.1)" : "rgba(83,74,183,.06)";
+    c.appendChild(num);
+
+    const logo = document.createElement("img");
+    logo.src = "assets/TH1_logos_LOGO_completo_claim-negro-1.png";
+    logo.className = "mv-logo" + (m.dark ? " mv-logo-inv" : "");
+    c.appendChild(logo);
+
+    const ct = document.createElement("div");
+    ct.className = "mv-ct";
+    ct.innerHTML =
+      `<div class="mv-eye" style="color:${m.dark?'#7F77DD':'#534AB7'}">${m.eye}</div>`+
+      `<div class="mv-title" style="color:${m.dark?'#fff':'#1E1A4E'}">${m.title.replace(/\n/g,'<br>')}</div>`+
+      (m.sub ? `<div class="mv-sub" style="color:${m.dark?'rgba(255,255,255,.52)':'rgba(30,26,78,.52)'}">${m.sub.replace(/\n/g,'<br>')}</div>` : '');
+    c.appendChild(ct);
+
+    track.appendChild(c);
+  });
+
+  let tx0 = 0;
+  const mv = document.getElementById("mobile-view");
+  mv.addEventListener("touchstart", e => { tx0 = e.touches[0].clientX; }, {passive:true});
+  mv.addEventListener("touchend",   e => {
+    const dx = e.changedTouches[0].clientX - tx0;
+    if (Math.abs(dx) > 44) { dx < 0 ? mNext() : mPrev(); }
+  }, {passive:true});
+}
+
+function mGoTo(n) {
+  if (n < 0 || n >= TOTAL) return;
+  mCur = n;
+  document.getElementById("mv-track").style.transform = `translateX(${-n * 100}vw)`;
+  document.getElementById("mv-ctr").textContent = (n+1) + " / " + TOTAL;
+  document.getElementById("mv-prev").disabled = n === 0;
+  document.getElementById("mv-next").disabled = n === TOTAL-1;
+  document.getElementById("mv-bar").style.width = ((n+1)/TOTAL*100) + "%";
+}
+function mNext() { mGoTo(mCur+1); }
+function mPrev() { mGoTo(mCur-1); }
+</script>
+</body>
+</html>
