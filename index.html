@@ -478,9 +478,10 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0e0c25}
 iframe.cr-video{width:100%;aspect-ratio:16/9;height:auto;max-height:none;border:none;outline:none;display:block;border-radius:6px}
 .cr-vids-wrap.single .cr-video{max-width:280px}
 .cr-vids-wrap.single iframe.cr-video{max-width:100%}
-/* Dual iframes: apilar verticalmente para dar ancho completo */
-.cr-vids-wrap.dual:has(iframe.cr-video){flex-direction:column;gap:10px}
-.cr-vids-wrap.dual:has(iframe.cr-video) .cr-vid-item{flex:none;width:100%}
+.cr-vids-wrap.single .cr-vid-item{width:100%}
+/* Iframes: apilar verticalmente para dar ancho completo */
+.cr-vids-wrap:has(iframe.cr-video){flex-direction:column;gap:10px}
+.cr-vids-wrap:has(iframe.cr-video) .cr-vid-item{flex:none;width:100%}
 /* VC LOGOS */
 .cr-vc-item{display:flex;align-items:center}
 .cr-vc-logo{max-height:34px;max-width:120px;object-fit:contain;filter:brightness(0) invert(1);opacity:.32;transition:opacity .3s}
@@ -1344,32 +1345,32 @@ iframe.cr-video{width:100%;aspect-ratio:16/9;height:auto;max-height:none;border:
           </div>
           <div class="cr-hero-item">
             <span class="cr-hero-n">04</span>
-            <span class="cr-hero-name" style="font-size:28px">Nofakes</span>
-            <span class="cr-hero-svc">Naming, branding y lanzamiento</span>
-            <span class="cr-hero-claim"></span>
-          </div>
-          <div class="cr-hero-item">
-            <span class="cr-hero-n">05</span>
             <span class="cr-hero-name" style="font-size:28px">Billionhands</span>
             <span class="cr-hero-svc">Construcción integral de marca y evolución marketplace</span>
             <span class="cr-hero-claim"></span>
           </div>
           <div class="cr-hero-item">
-            <span class="cr-hero-n">06</span>
+            <span class="cr-hero-n">05</span>
             <span class="cr-hero-name" style="font-size:28px">Pibank</span>
             <span class="cr-hero-svc">Naming, identidad y lanzamiento de neobank</span>
             <span class="cr-hero-claim"></span>
           </div>
           <div class="cr-hero-item">
-            <span class="cr-hero-n">07</span>
+            <span class="cr-hero-n">06</span>
             <span class="cr-hero-name" style="font-size:28px">Kimoa</span>
             <span class="cr-hero-svc">Estrategia y campaña de marca lifestyle</span>
             <span class="cr-hero-claim"></span>
           </div>
           <div class="cr-hero-item">
-            <span class="cr-hero-n">08</span>
+            <span class="cr-hero-n">07</span>
             <span class="cr-hero-name" style="font-size:28px">Reclamador</span>
             <span class="cr-hero-svc">Growth, performance y lanzamiento digital</span>
+            <span class="cr-hero-claim"></span>
+          </div>
+          <div class="cr-hero-item">
+            <span class="cr-hero-n">08</span>
+            <span class="cr-hero-name" style="font-size:28px">USO</span>
+            <span class="cr-hero-svc">Campaña social y producción audiovisual</span>
             <span class="cr-hero-claim"></span>
           </div>
         </div>
@@ -1474,11 +1475,7 @@ iframe.cr-video{width:100%;aspect-ratio:16/9;height:auto;max-height:none;border:
         <div class="cr-case-right">
           <div class="cr-case-wm">BH</div>
           <div class="cr-case-media af d4">
-            <div class="cr-vids-wrap dual">
-              <div class="cr-vid-item">
-                <div class="cr-video-lbl">Pieza</div>
-                <img src="assets/assets%20/Piezas/Billionhands.png" alt="Billionhands pieza" style="width:100%;border-radius:6px;border:1px solid rgba(175,169,236,.12);display:block;object-fit:contain;background:#0e0c25">
-              </div>
+            <div class="cr-vids-wrap single">
               <div class="cr-vid-item">
                 <div class="cr-video-lbl">Campaña</div>
                 <iframe class="cr-video" src="https://drive.google.com/file/d/1XB-WTUQjwoV189QjuGzbYtLzbbph51Uq/preview" allow="autoplay" allowfullscreen></iframe>
@@ -1576,7 +1573,7 @@ iframe.cr-video{width:100%;aspect-ratio:16/9;height:auto;max-height:none;border:
           <div class="cr-case-media af d4">
             <div class="cr-vids-wrap single">
               <div class="cr-vid-item">
-                <div class="cr-video-lbl">Campaña</div>
+                <div class="cr-video-lbl">Videoconcept</div>
                 <iframe class="cr-video" src="https://drive.google.com/file/d/1bu0SB8ZIDjp427dlK8HvQQUq3OD2JFDE/preview" allow="autoplay" allowfullscreen></iframe>
               </div>
             </div>
