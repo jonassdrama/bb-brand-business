@@ -475,9 +475,12 @@ html,body{width:100%;height:100%;overflow:hidden;background:#0e0c25}
 .cr-vid-item{display:flex;flex-direction:column;gap:5px}
 .cr-video-lbl{font-size:8px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:rgba(175,169,236,.32);text-align:center}
 .cr-video{width:100%;border-radius:6px;border:1px solid rgba(175,169,236,.12);background:#000;display:block;max-height:160px;object-fit:contain}
-iframe.cr-video{height:160px;max-height:none;border:none;outline:none}
+iframe.cr-video{width:100%;aspect-ratio:16/9;height:auto;max-height:none;border:none;outline:none;display:block;border-radius:6px}
 .cr-vids-wrap.single .cr-video{max-width:280px}
-.cr-vids-wrap.single iframe.cr-video{max-width:100%;height:200px}
+.cr-vids-wrap.single iframe.cr-video{max-width:100%}
+/* Dual iframes: apilar verticalmente para dar ancho completo */
+.cr-vids-wrap.dual:has(iframe.cr-video){flex-direction:column;gap:10px}
+.cr-vids-wrap.dual:has(iframe.cr-video) .cr-vid-item{flex:none;width:100%}
 /* VC LOGOS */
 .cr-vc-item{display:flex;align-items:center}
 .cr-vc-logo{max-height:34px;max-width:120px;object-fit:contain;filter:brightness(0) invert(1);opacity:.32;transition:opacity .3s}
